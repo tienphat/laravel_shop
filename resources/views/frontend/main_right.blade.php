@@ -18,14 +18,15 @@
                         <div class="item-content">
                             <p>
                                 <?php
-                                if (number_format($row->price_sale) != 0)
+                                $price_sale = $row->product_price - ($row->product_price * $row->product_discount);
+                                if (number_format($price_sale) != 0)
                                 {
-                                    echo "<span>" . number_format($row->price_sale, 0, '.', '.') . "<sup><u>đ</u></sup></span>";
-                                    echo " <span class='is_sale'>" . number_format($row->price, 0, '.', '.') . "<sup><u>đ</u></sup></span>";
+                                    echo "<span>" . number_format($price_sale, 0, '.', '.') . "<sup><u>đ</u></sup></span>";
+                                    echo " <span class='is_sale'>" . number_format($row->product_price, 0, '.', '.') . "<sup><u>đ</u></sup></span>";
                                 }
                                 else
                                 {
-                                    echo "<span class='no_sale'>" . number_format($row->price, 0, '.', '.') . "<sup><u>đ</u></sup></span>";
+                                    echo "<span class='no_sale'>" . number_format($row->product_price, 0, '.', '.') . "<sup><u>đ</u></sup></span>";
                                 }
                                 ?>
                             </p>
@@ -33,7 +34,7 @@
                     </div>
                     <div class="bg_hidden">
                         <a href="<?php echo $row->product_alias; ?>" class="over_bg"></a>
-                        <a href="javascript:void(0)" onclick="dat_mua('<?php echo $row->id; ?>')" class="btn btn-primary dat_mua">Đặt mua</a>
+                        <a href="javascript:void(0)" onclick="dat_mua('<?php echo $row->product_id; ?>')" class="btn btn-primary dat_mua">Đặt mua</a>
                     </div>
                 </div>
             </div>
