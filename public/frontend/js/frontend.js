@@ -1,33 +1,15 @@
+$(function () {
+//    Show, hide slide
+    var url = window.location.pathname;
+    url = url.split("/");
 
-function dat_mua(id) {
-    if ($(".name").text() == "") {
-        alert("Vui lòng đăng nhập trước khi mua hàng!");
-    } else {
-        var filename = 'user/cart';
-        var html = "";
-        $.ajax({
-            url: "sanpham/mua_hang",
-            type: "post",
-            dataType: "json",
-            data: {id: id}
-        }).done(function (result) {
-            console.log(result);
-            html += "<a href='" + filename + "'><i class='fa fa-shopping-cart'></i> </a>";
-            html += "<span class='number_cart'>" + result.length + "</span>";
-            $(".cart-item").html(html);
-        });
+    if (url[1] == "trang-chu") {
+        $(".slideshow").removeClass("hideSlide");
+    }
+    if (url[1] == "") {
+        $(".slideshow").removeClass("hideSlide");
     }
 
-}
-$(function(){
-//    var url = window.location.pathname;
-//    url = url.split("/");
-//    if(url.slice(-1).pop() != "/"){
-//        $(".slideshow").hide();
-//    }
-//    if(url.slice(-1).pop() != ""){
-//        $(".slideshow").hide();
-//    }
     $('#search_product').keypress(function (e) {
         var key = e.which;
         if (key == 13)  // the enter key code
@@ -130,4 +112,72 @@ $(function(){
         }
 
     });
+
+    $("#btnSignup").click(function () {
+        var password = $("#pass").val();
+        var confirmPassword = $("#repass").val();
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    });
+
+    //Show login-form
+    $(".sign_in").click(function () {
+        $(".login-form").slideToggle();
+    });
+    $(".btnLogin").click(function () {
+        $(".login-form").slideUp();
+    });
+    $(".sign_up").click(function () {
+        $(".login-form").slideUp();
+    });
+    //Fixed-menu
+    var nav = $('.mainmenu');
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 133) {
+            nav.addClass("fixed-menu");
+        } else {
+            nav.removeClass("fixed-menu");
+        }
+    });
+    //active menu
+    function stripTrailingSlash(str) {
+        if (str.substr(-1) == '/') {
+            return str.substr(0, str.length - 1);
+        }
+        return str;
+    }
+
+    var url = window.location.pathname;
+    var activePage = stripTrailingSlash(url);
+
+    $('ul.nav.target-active li a').each(function () {
+        var currentPage = stripTrailingSlash($(this).attr('href'));
+
+        if (activePage == currentPage) {
+            $(this).parent().addClass('active');
+        }
+    });
 });
+//Dat mua
+function dat_mua(id) {
+        if ($(".name").text() == "") {
+            alert("Vui lòng đăng nhập trước khi mua hàng!");
+        } else {
+            var filename = 'user/cart';
+            var html = "";
+            $.ajax({
+                url: "sanpham/mua_hang",
+                type: "post",
+                dataType: "json",
+                data: {id: id}
+            }).done(function (result) {
+                console.log(result);
+                html += "<a href='" + filename + "'><i class='fa fa-shopping-cart'></i> </a>";
+                html += "<span class='number_cart'>" + result.length + "</span>";
+                $(".cart-item").html(html);
+            });
+        }
+    };

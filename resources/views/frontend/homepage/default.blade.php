@@ -1,4 +1,6 @@
-@extends('frontend.index') @section('frontend.main_right')
+@extends('frontend.home') 
+
+@section('main_right')
 <div class="row">
     <h3><i class="fa fa-shopping-cart"></i>   Danh mục sản phẩm</h3>
     <div class="list_product">
@@ -20,13 +22,10 @@
                             <p>
                                 <?php
                                 $price_sale = $row->product_price - ($row->product_price * $row->product_discount);
-                                if (number_format($price_sale) != 0)
-                                {
+                                if (number_format($price_sale) != 0) {
                                     echo "<span>" . number_format($price_sale, 0, '.', '.') . "<sup><u>đ</u></sup></span>";
                                     echo " <span class='is_sale'>" . number_format($row->product_price, 0, '.', '.') . "<sup><u>đ</u></sup></span>";
-                                }
-                                else
-                                {
+                                } else {
                                     echo "<span class='no_sale'>" . number_format($row->product_price, 0, '.', '.') . "<sup><u>đ</u></sup></span>";
                                 }
                                 ?>
@@ -39,10 +38,10 @@
                     </div>
                 </div>
             </div>
-            <?php // echo $row->name; ?>
+    <?php // echo $row->name;  ?>
 
-                <?php endforeach; ?>
+        <?php endforeach; ?>
     </div>
 
 </div>
-@endsection
+@stop

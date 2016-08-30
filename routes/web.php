@@ -7,6 +7,7 @@
  */
 
 Route::get('/', 'HomeController@index');
+Route::get('/admin', 'Admin\AdminController@index');
 
 Route::get('/san-pham', 'ProductsController@index');
 Route::get('/lien-he', 'ContactController@index');
@@ -32,14 +33,6 @@ Route::get('/san-pham/{num}', 'ProductsController@category');
 Route::get('/san-pham/{any}', 'ProductsController@category');
 Route::get('/san-pham/{any}/{num}', 'ProductsController@category');
 
+Route::get('/api_data/{method}', 'DataController@');
+
 Route::get('{any}', 'ProductsController@show');
-
-//Route::get('/show/{id}', 'HomeController@show');
-
-// Form
-// Route::get('/a', function()
-// {
-//     echo 'a';
-// });
-//
-// Route::post('postForm', ['as' => 'postForm', 'uses' => 'MyController@postForm']);
