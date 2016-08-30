@@ -10,10 +10,10 @@
             <div class="col-md-7 col-sm-6 col-xs-6">
                 @if(Auth::guest())
                     <span class='sign_in'>Đăng nhập</span> | 
-                    <a href='{{ url('user/signup') }} class='sign_up'>Đăng ký</a>
+                    <a href='{{ url("user/signup") }}' class='sign_up'>Đăng ký</a>
                 @else
                     Xin chào <span class='name'> {{ Auth::user() -> name }} </span> | 
-                    <a href='{{ url('user/signout') }} class='sign_out'>Đăng xuất</a>
+                    <a href='{{ url("user/signout") }}' class='sign_out'>Đăng xuất</a>
                 @endif
             </div>
         </div>

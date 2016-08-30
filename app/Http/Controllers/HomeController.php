@@ -27,7 +27,7 @@ class HomeController extends Controller
                     ['parentid', 0]
                 ])->get();
         
-        return view('frontend.components.trangchu.default') -> with($data);
+        return view('frontend.trangchu.default') -> with($data);
     }
     /**
      * Show the form for creating a new resource.

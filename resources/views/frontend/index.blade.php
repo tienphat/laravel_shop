@@ -13,13 +13,7 @@
     <link href="{{asset('public/frontend/css/opensans.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('public/frontend/css/template.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('public/frontend/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
-    <!--jQuery-->
-    <script type="text/javascript" src="{{asset('public/frontend/js/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('public/frontend/js/jquery2.js')}}"></script>
-    <script type="text/javascript" src="{{asset('public/frontend/js/jq.js')}}"></script>
-    <script type="text/javascript" src="{{asset('public/frontend/js/js_frontend.js')}}"></script>
-    <!--Bootstrap JavaScript-->
-    <script type="text/javascript" src="{{asset('public/frontend/js/bootstrap.js')}}"></script>
+    
 
 </head>
 
@@ -56,6 +50,7 @@
                 </div>
                 <div class="col-md-9 col-sm-8 col-xs-12 main_right">
                     <div class="ml-box-right">
+                        @yield('content')
                         @yield('main_right')
                     </div>
                 </div>
@@ -77,7 +72,15 @@
             </div>
         </div>
     </div>
-
+    
+    
+    <!--jQuery-->
+    <script type="text/javascript" src="{{asset('public/frontend/js/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/frontend/js/jquery2.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/frontend/js/jq.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/frontend/js/js_frontend.js')}}"></script>
+    <!--Bootstrap JavaScript-->
+    <script type="text/javascript" src="{{asset('public/frontend/js/bootstrap.js')}}"></script>
 </body>
 
 </html>
