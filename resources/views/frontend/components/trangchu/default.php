@@ -1,4 +1,4 @@
-@extends('frontend.index') @section('frontend.main_right')
+@extends('frontend.index') @section('main_right')
 <div class="row">
     <h3><i class="fa fa-shopping-cart"></i>   Danh mục sản phẩm</h3>
     <div class="list_product">

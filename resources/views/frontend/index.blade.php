@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-md-9 col-sm-8 col-xs-12 main_right">
                     <div class="ml-box-right">
-                        @include('frontend.main_right')
+                        @yield('main_right')
                     </div>
                 </div>
             </div>
