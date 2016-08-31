@@ -15,5 +15,8 @@ class AdminController extends Controller
         return view('backend.index');
         
     }
+    public function login(){
+        return view('backend.login');
+    }
     
 }
