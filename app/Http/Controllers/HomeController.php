@@ -37,10 +37,6 @@ class HomeController extends Controller {
         //
     }
 
-    public function a() {
-        
-    }
-
     /**
      * Store a newly created resource in storage.
      *

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2016 at 02:16 AM
+-- Generation Time: Sep 01, 2016 at 03:18 AM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -123,6 +123,24 @@ INSERT INTO `menu` (`id`, `level`, `title`, `link`, `parentid`, `created`, `crea
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`migration`, `batch`) VALUES
+('2014_10_12_100000_create_password_resets_table', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
@@ -149,6 +167,18 @@ CREATE TABLE IF NOT EXISTS `order_items` (
   `RMA_number` int(11) DEFAULT NULL,
   `RMA_issued_by` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `RMA_order_item_details` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE IF NOT EXISTS `password_resets` (
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -284,21 +314,29 @@ CREATE TABLE IF NOT EXISTS `shipment_items` (
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `user_id` int(11) NOT NULL,
-  `email_address` varchar(255) DEFAULT NULL,
-  `login_name` varchar(255) DEFAULT NULL,
-  `login_password` varchar(255) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `email` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `gender` int(11) DEFAULT NULL,
-  `fullname` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `phone_number` varchar(15) DEFAULT NULL,
-  `created` datetime DEFAULT NULL,
-  `updated` datetime DEFAULT NULL,
-  `logined` datetime DEFAULT NULL,
+  `fullname` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `phone_number` varchar(15) CHARACTER SET latin1 DEFAULT NULL,
+  `remember_token` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `logined_at` timestamp NULL DEFAULT NULL,
   `level` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `trash` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `name`, `password`, `gender`, `fullname`, `address`, `phone_number`, `remember_token`, `created_at`, `updated_at`, `logined_at`, `level`, `status`, `trash`) VALUES
+(1, 'quangphatc3@gmail.com', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 1, 'Ngô Ti?n Phát', 'C?u Gi?y, Hà N?i', '0967085852', 'YES', '2016-08-31 17:56:52', '2016-08-31 17:57:00', NULL, 1, 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -348,6 +386,13 @@ ALTER TABLE `order_items`
   ADD PRIMARY KEY (`order_item_id`),
   ADD KEY `FK_order_items` (`order_id`),
   ADD KEY `FK_product_items` (`product_id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`),
+  ADD KEY `password_resets_token_index` (`token`);
 
 --
 -- Indexes for table `payments`
@@ -409,68 +454,57 @@ ALTER TABLE `shipment_items`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `customer_payment_methods`
+--
+ALTER TABLE `customer_payment_methods`
+  MODIFY `customer_payment_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `invoices`
+--
+ALTER TABLE `invoices`
+  MODIFY `invoice_number` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
--- Constraints for dumped tables
---
-
---
--- Constraints for table `customer`
---
-ALTER TABLE `customer`
-  ADD CONSTRAINT `FK_customer` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
-
---
--- Constraints for table `customer_payment_methods`
---
-ALTER TABLE `customer_payment_methods`
-  ADD CONSTRAINT `FK_customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
-  ADD CONSTRAINT `FK_customer_payment_methods` FOREIGN KEY (`payment_method_code`) REFERENCES `ref_payment_methods` (`payment_method_code`);
-
---
--- Constraints for table `invoices`
---
-ALTER TABLE `invoices`
-  ADD CONSTRAINT `FK_invoices` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
-  ADD CONSTRAINT `FK_invoices_status_code` FOREIGN KEY (`invoice_status_code`) REFERENCES `ref_invoice_status_codes` (`invoice_status_code`);
-
---
--- Constraints for table `orders`
+-- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `FK_orders` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
-  ADD CONSTRAINT `FK_orders_status_code` FOREIGN KEY (`order_status_code`) REFERENCES `ref_order_status_codes` (`order_status_code`);
-
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Constraints for table `order_items`
+-- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  ADD CONSTRAINT `FK_order_items` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
-  ADD CONSTRAINT `FK_product_items` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
-
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Constraints for table `shipments`
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `shipments`
 --
 ALTER TABLE `shipments`
-  ADD CONSTRAINT `FK_shipments` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
-  ADD CONSTRAINT `FK_shipments_invoide_number` FOREIGN KEY (`invoice_number`) REFERENCES `invoices` (`invoice_number`);
-
+  MODIFY `shipment_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Constraints for table `shipment_items`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `shipment_items`
-  ADD CONSTRAINT `FK_shipment_items` FOREIGN KEY (`shipment_id`) REFERENCES `shipments` (`shipment_id`);
-
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

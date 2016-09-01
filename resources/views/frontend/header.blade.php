@@ -8,11 +8,12 @@
         <title>GiantShop - Mua hàng trực tuyến giá rẻ</title>
 
         <!--Bootstrap CSS-->
-        <link href="{{asset('public/frontend/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('public/frontend/css/opensans.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('public/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('public/css/opensans.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('public/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
+        
         <link href="{{asset('public/frontend/css/template.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('public/frontend/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
-
+        
         <!--Jquery-->
         <script type="text/javascript" src="{{asset('public/js/libs/jquery-2.2.3.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('public/js/libs/bootstrap.js')}}"></script>
