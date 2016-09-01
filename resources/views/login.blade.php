@@ -15,7 +15,6 @@
     </head>
 
     <body>
-        <?php phpinfo(); ?>
         <div class="body"></div>
         <div class="grad"></div>
         <div class="header">
