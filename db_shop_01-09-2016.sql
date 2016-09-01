@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `invoices` (
   `invoice_number` int(11) NOT NULL,
   `order_id` int(11) DEFAULT NULL,
   `invoice_status_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `invoice_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `invoice_date` datetime DEFAULT NULL ON UPDATE DATETIME,
   `invoice_details` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `order_id` int(11) NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
   `order_status_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `date_order_placed` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `date_order_placed` datetime DEFAULT NULL ON UPDATE DATETIME
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 CREATE TABLE IF NOT EXISTS `payments` (
   `payment_id` int(11) NOT NULL,
   `invoice_number` int(11) DEFAULT NULL,
-  `payment_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `payment_date` datetime DEFAULT NULL ON UPDATE DATETIME,
   `payment_amount` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -292,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `shipments` (
   `order_id` int(11) DEFAULT NULL,
   `invoice_number` int(11) DEFAULT NULL,
   `shipment_tracking_number` int(11) DEFAULT NULL,
-  `shipment_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `shipment_date` datetime DEFAULT NULL ON UPDATE DATETIME,
   `other_shipment_details` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

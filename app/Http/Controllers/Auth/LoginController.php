@@ -39,16 +39,4 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
-    public function login(Request $req)
-    {
-        $username = $req['username'];
-        $password = $req['password'];
-        if(Auth::attempt(['name' => $username, 'password' => $password])){
-            return view('backend.index');
-        }else{
-            echo ('<script>alert("Thông tin đăng nhập không chính xác, vui lòng nhập lại!")</script>');
-            return view('login');
-        }
-
-    }
 }

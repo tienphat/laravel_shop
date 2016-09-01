@@ -9,10 +9,8 @@
 Route::get('/', 'HomeController@index');
 Route::get('/admin', 'Admin\AdminController@index');
 //---------Login-----------//
-Route::get('/admin/login', function(){
-	return view('login');
-});
-Route::post('/admin/login', 'Auth\LoginController@login');
+Route::get('/admin/login', 'AuthController@login');
+Route::post('/admin/handleLogin', 'AuthController@handleLogin');
 
 Route::get('/san-pham', 'ProductsController@index');
 Route::get('/lien-he', 'ContactController@index');

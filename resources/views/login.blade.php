@@ -22,7 +22,7 @@
         </div>
         <br>
         <div class="login">
-            <form action="{{url('/admin/login')}}" method="post">
+            <form action="{{url('/admin/handleLogin')}}" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="text" required placeholder="username" name="username"><br>
                 <input type="password" required placeholder="password" name="password"><br>
