@@ -15,7 +15,7 @@
     </head>
 
     <body>
-
+        <?php phpinfo(); ?>
         <div class="body"></div>
         <div class="grad"></div>
         <div class="header">
@@ -24,7 +24,8 @@
         <br>
         <div class="login">
             <form action="{{url('/admin/login')}}" method="post">
-                <input type="text" required placeholder="username" name="user"><br>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="text" required placeholder="username" name="username"><br>
                 <input type="password" required placeholder="password" name="password"><br>
                 <input type="submit" value="Login">
                 <input type="button" value="Forgot password">
