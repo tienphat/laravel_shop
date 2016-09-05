@@ -17,13 +17,13 @@ class AuthController extends Controller
 
     public function handleLogin(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|exists:users,name,role,admin',
-            'password' => 'required'
-        ]);
+        // $this->validate($request, [
+        //     'name' => 'required|exists:users,name,role,admin',
+        //     'password' => 'required'
+        // ]);
 
-        $username = $req['username'];
-        $password = $req['password'];
+        $username = $request['username'];
+        $password = $request['password'];
         if (Auth::attempt(['name' => $username, 'password' => $password]))
         {
             return redirect('/admin');
@@ -34,18 +34,7 @@ class AuthController extends Controller
             echo ('<script>alert("Thông tin đăng nhập không chính xác, vui lòng nhập lại!")</script>');
             return view('login');
         }
-//        
-//        $username = $req['username'];
-//        $password = $req['password'];
-//        if (Auth::attempt(['name' => $username, 'password' => $password]))
-//        {
-//            return view('backend.index');
-//        }
-//        else
-//        {
-//            echo ('<script>alert("Thông tin đăng nhập không chính xác, vui lòng nhập lại!")</script>');
-//            return view('login');
-//        }
+
     }
 
 }
