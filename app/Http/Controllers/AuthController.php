@@ -34,6 +34,7 @@ class AuthController extends Controller
             echo ('<script>alert("Thông tin đăng nhập không chính xác, vui lòng nhập lại!")</script>');
             return view('login');
         }
+
     }
 
 }
