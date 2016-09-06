@@ -2,7 +2,7 @@
 <html >
     <head>
         <meta charset="UTF-8">
-        <title>Random Login Form</title>
+        <title>Login System</title>
         <!--Bootstrap CSS-->
         <link href="{{asset('public/css/opensans.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('public/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />

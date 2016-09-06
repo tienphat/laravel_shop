@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
 {
     
     public function index(){
 
-    	return view('backend.products');
+    	$data['list_products'] = DB::table('products')->get();
+    	return view('backend.products')->with($data);
 
     }
 }

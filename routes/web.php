@@ -12,9 +12,7 @@ Route::get('/admin', 'Admin\AdminController@index');
 Route::get('/admin/login', 'AuthController@login');
 Route::post('/admin/handleLogin', 'AuthController@handleLogin');
 //---------Products----------//
-Route::get('/admin/products', function(){
-	return view('backend.products');
-});
+Route::get('/admin/products', 'Admin\ProductsController@index');
 
 Route::get('/san-pham', 'ProductsController@index');
 Route::get('/lien-he', 'ContactController@index');
