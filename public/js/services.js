@@ -1,14 +1,14 @@
 var sv = {};
 
-/*--------------------------- OBJECT ----------------------------*/
+//--------------------------- OBJECT ----------------------------
 sv.url = {};
 sv.data = {};
 sv.captcha = {};
 
-/*--------------------------- CONFIG URL ----------------------------*/
+//--------------------------- CONFIG URL ----------------------------
 
-sv.url.base = SITE_ROOT + 'frontend/api_data/';
-sv.url.captcha.base = SITE_ROOT + 'frontend/api_captcha/index/';
+sv.url.base = SITE_ROOT + 'api/data/';
+sv.captcha.base = SITE_ROOT + 'api/captcha/index/';
 
 sv.url.getService = function (method)
 {
@@ -16,12 +16,11 @@ sv.url.getService = function (method)
 };
 sv.url.getCaptcha = function (method)
 {
-    return sv.url.captcha.base + method;
+    return sv.captcha.base + method;
 };
 
-/*--------------------------------AJAX-------------------------------------*/
+//--------------------------------AJAX-------------------------------------
 sv.data.getData = function (url, data, afuntion, async) {
-    data.website_id = _VAR_WEBSITE_ID;
     $.ajax({
         method: "POST",
         url: url,
@@ -42,7 +41,29 @@ sv.data.getData = function (url, data, afuntion, async) {
     });
 }
 
-/*------------------------------------ BUILD URL---------------------------------------*/
+//-------------------------------- FUNCTION -------------------------------------
+/**
+ * get list product
+ * @param {type} afunction
+ * @param {type} async
+ * @returns {undefined}
+ */
+
+sv.data.getAllProducts = function (afunction, async){
+    var data = {};
+    if(typeof async == 'undefined')
+        async = true;
+    sv.data.getData(sv.url.getService('getAllProducts'), data, afunction, async);
+}
+
+sv.data.menu = function (afunction, async) {
+    var data = {};
+    if (typeof async == 'undefined')
+        async = true;
+    sv.data.getData(sv.url.getService('get_menu'), data, afunction, async);
+};
+
+//------------------------------------ BUILD URL---------------------------------------
 sv.url.build_article = function (cat_slug, art_slug, website_id, cat_id, art_id) {
     return SITE_ROOT + 'tin-bai/' + cat_slug + '/' + art_slug + '/' + website_id + '-' + cat_id + '-' + art_id;
 };
@@ -64,34 +85,7 @@ sv.url.public_images = function (file_name) {
     return SITE_ROOT + 'public/images/' + file_name;
 };
 
-/*-------------------------------- FUNCTION -------------------------------------*/
-/**
- * get list product
- * @param {type} afunction
- * @param {type} async
- * @returns {undefined}
- */
-
-sv.data.getListProducts = function (afunction, async){
-    var data = {};
-    if(typeof async == 'undefined')
-        async = true;
-    sv.data.getData(sv.url.getService('get_products'), data, afunction, async);
-}
-
-sv.data.menu = function (afunction, async) {
-    var data = {};
-    if (typeof async == 'undefined')
-        async = true;
-    sv.data.getData(sv.url.getService('get_menu'), data, afunction, async);
-};
-
-/**
- * lay danh sach tin bai noi bat
- * @param {type} afunction
- * @param {type} async
- * @returns {undefined}
- */
+//-------------lay danh sach tin bai noi bat------------------
 sv.data.sticky = function (afunction, async) {
     var data = {};
     if (typeof async == 'undefined')
@@ -153,86 +147,8 @@ sv.data.art_of_cat = function (page, cat_id, key_word, afunction, async) {
     sv.data.getData(sv.url.getService('get_art_of_cat_by_page'), data, afunction, async);
 };
 
-/**
- * lay danh sach cau hoi cong dan
- * @param {type} data
- * @param {type} afunction
- * @param {type} async
- * @returns {undefined} * @param {type} data
- * @param {type} afunction
- * @param {type} async
- * @returns {undefined} 
- */
-sv.data.all_cq = function (data, afunction, async) {
-    if (typeof async == 'undefined')
-        async = true;
-    sv.data.getData(sv.url.getService('get_all_cq'), data, afunction, async);
-};
 
-/**
- * insert hoi dap
- */
-sv.data.do_insesrt_cq = function (data, afunction, async) {
-    if (typeof async == 'undefined')
-        async = true;
-    sv.data.getData(sv.url.getService('do_insert_cq'), data, afunction, async);
-
-};
-
-/**
- * chi tiet cau hoi
- */
-sv.data.cq_detail = function (cq_id, afunction, async) {
-    var data = {cq_id: cq_id};
-    if (typeof async == 'undefined')
-        async = true;
-    sv.data.getData(sv.url.getService('get_cq_detail'), data, afunction, async);
-};
-
-sv.data.homepage_category = function (left_words, children_cat, afunction, async) {
-    var data = {
-        left_words: left_words,
-        children_cat: children_cat
-    };
-
-    if (typeof async == 'undefined')
-        async = true;
-    sv.data.getData(sv.url.getService('get_homepage_category'), data, afunction, async);
-};
-
-sv.data.weblink = function (type_code, afunction, async) {
-    var data = {type_code: type_code};
-    if (typeof async == 'undefined')
-        async = true;
-    sv.data.getData(sv.url.getService('get_weblink'), data, afunction, async);
-};
-
-sv.data.get_cq_field = function (afunction, async) {
-    var data = {};
-    if (typeof async == 'undefined')
-        async = true;
-    sv.data.getData(sv.url.getService('get_cq_field'), data, afunction, async);
-};
-/**
- * lay danh sach cau hoi cong dan
- * @param {type} data
- * @param {type} afunction
- * @param {type} async
- * @returns {undefined} * @param {type} data
- * @param {type} afunction
- * @param {type} async
- * @returns {undefined} 
- */
-
-//---------------------EHR---------------------
-
-sv.data.getAllDoctors = function (afunction, async, objMethod) {
-    var data = {};
-    if (typeof async == 'undefined')
-        async = true;
-    sv.data.getData(sv.url.getEhrService('getAllDoctors'), data, afunction, async, objMethod);
-};
-
+//---------------------Data---------------------
 sv.data.getAllCitys = function (afunction, async, objMethod) {
     var data = {};
     if (typeof async == 'undefined')
@@ -247,11 +163,6 @@ sv.data.getAllJobs = function (afunction, async, objMethod) {
     sv.data.getData(sv.url.getEhrService('getAllJobs'), data, afunction, async, objMethod);
 };
 
-sv.data.register = function (data, afunction, async, objMethod) {
-    if (typeof async == 'undefined')
-        async = true;
-    sv.data.getData(sv.url.getEhrService('register'), data, afunction, async, objMethod);
-};
 
 sv.data.checkRegister = function (secret, security, afunction, async, objMethod) {
     var data = {

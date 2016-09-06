@@ -9,7 +9,7 @@
 Route::get('/', 'HomeController@index');
 Route::get('/admin', 'Admin\AdminController@index');
 //---------Login-----------//
-Route::get('/admin/login', 'AuthController@login');
+Route::get('/admin/login', 'AuthController@login')->middleware('auth');
 Route::post('/admin/handleLogin', 'AuthController@handleLogin');
 //---------Products----------//
 Route::get('/admin/products', 'Admin\ProductsController@index');
@@ -38,6 +38,4 @@ Route::get('/san-pham/{num}', 'ProductsController@category');
 Route::get('/san-pham/{any}', 'ProductsController@category');
 Route::get('/san-pham/{any}/{num}', 'ProductsController@category');
 
-Route::get('/api_data/{method}', 'DataController@');
-
-Route::get('{any}', 'ProductsController@show');
+//Route::get('{any}', 'ProductsController@show');   

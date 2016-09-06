@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller {
 
-    function __construct() {
-        
-        
-    }
-
     /**
      * Display a listing of the resource.
      *

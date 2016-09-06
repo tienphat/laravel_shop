@@ -103,7 +103,7 @@
 @include('config')
 
 <script>
-    var SITE_ROOT = '/laravel_shop/';
+    var SITE_ROOT = '<?php echo url('/'); ?>/';
     var myApp = angular.module('myApp', ['bw.paging']);
     myApp.factory('$apply', function ($rootScope) {
         return function (fn) {
