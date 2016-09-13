@@ -1,7 +1,7 @@
-@extends('backend.master')
+@extends('backend.layout.master')
 
 <!-- page content -->
-@section('page_content')
+@section('content')
 
     <!-- page content -->
     <div class="right_col" role="main">

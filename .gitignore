@@ -3,4 +3,10 @@
 /.idea
 Homestead.json
 Homestead.yaml
+<<<<<<< HEAD
 /nbproject/private/
+=======
+/nbproject/private/
+/nbproject
+/laravel_shop.rar
+>>>>>>> master
