@@ -6,7 +6,10 @@ myApp.controller('products_page', function ($scope, $apply, $timeout, $sce) {
         console.log(response);
 
         $apply(function () {
-            $scope.listProducts = response;
+//            $scope.listProducts = response;
         });
     });
+});
+$(function () {
+
 });

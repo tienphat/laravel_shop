@@ -16,6 +16,7 @@ Route::get('admin/logout', 'Auth\LoginController@logout');
 Route::get('admin/forgotPassword', 'Auth\LoginController@forgotPassword');
 //----------Backend continue
 Route::get('admin/products', 'Admin\ProductsController@index');
+Route::get('admin/users', 'Admin\UsersController@index');
 
 
 

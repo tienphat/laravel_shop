@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Gentellela Alela! | </title>
+        <title>Admin Giant Shop</title>
 
         <!-- Bootstrap -->
         <link href="{{asset('public/libs/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -24,6 +24,8 @@
 
         <!-- Custom Theme Style -->
         <link href="{{asset('public/build/css/custom.min.css')}}" rel="stylesheet">
+
+        @yield('css')
     </head>
 
     <body class="nav-md">
@@ -32,7 +34,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Giant Shop!</span></a>
+                            <a href="{{url('/admin')}}" class="site_title"><i class="fa fa-paw"></i> <span>Giant Shop!</span></a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -54,16 +56,28 @@
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                                <!--<h3>Giant Shop</h3>-->
+                                <h3>&nbsp;</h3>
                                 <ul class="nav side-menu">
-                                    <li><a href="{{url('/admin')}}"><i class="fa fa-home"></i> Home</a>
+                                    <li><a href="{{url('/admin')}}"><i class="fa fa-home"></i> Dashboard</a>
                                         <!--                    <ul class="nav child_menu">
                                                               <li><a href="index.html">Dashboard</a></li>
                                                               <li><a href="index2.html">Dashboard2</a></li>
                                                               <li><a href="index3.html">Dashboard3</a></li>
                                                             </ul>-->
                                     </li>
-                                    <li><a><i class="fa fa-table"></i> Category <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a href="{{url('admin/products')}}">Products</a></li><li><a href="tables_dynamic.html">Table Dynamic</a></li></ul></li>
+                                    <li>
+                                        <a><i class="fa fa-table"></i> Category <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{url('admin/products')}}">Products</a></li>
+                                            <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-users"></i> Users <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{url('admin/users')}}">Users</a></li>
+                                        </ul>
+                                    </li>
                                     <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="form.html">General Form</a></li>
@@ -87,7 +101,7 @@
                                             <li><a href="calendar.html">Calendar</a></li>
                                         </ul>
                                     </li>
-                                    
+
                                     <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="chartjs.html">Chart JS</a></li>
@@ -290,6 +304,11 @@
         <script src="{{asset('public/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
         <!-- FastClick -->
         <script src="{{asset('public/libs/fastclick/lib/fastclick.js')}}"></script>
+        <!-- Custom Theme Scripts -->
+        <script src="{{asset('public/build/js/custom.js')}}"></script>
+        <script type="text/javascript" src="{{asset('public/js/libs/angular.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('public/js/libs/paging.js')}}"></script>
+
         <!-- NProgress -->
         <script src="{{asset('public/libs/nprogress/nprogress.js')}}"></script>
         <!-- Chart.js -->
@@ -322,82 +341,81 @@
         <script src="{{asset('public/js/moment/moment.min.js')}}"></script>
         <script src="{{asset('public/js/datepicker/daterangepicker.js')}}"></script>
 
-        <!-- Custom Theme Scripts -->
-        <script src="{{asset('public/build/js/custom.min.js')}}"></script>
+
 
         <!-- Flot -->
         <script>
-    $(document).ready(function () {
-        var data1 = [
-            [gd(2012, 1, 1), 17],
-            [gd(2012, 1, 2), 74],
-            [gd(2012, 1, 3), 6],
-            [gd(2012, 1, 4), 39],
-            [gd(2012, 1, 5), 20],
-            [gd(2012, 1, 6), 85],
-            [gd(2012, 1, 7), 7]
-        ];
+$(document).ready(function () {
+    var data1 = [
+        [gd(2012, 1, 1), 17],
+        [gd(2012, 1, 2), 74],
+        [gd(2012, 1, 3), 6],
+        [gd(2012, 1, 4), 39],
+        [gd(2012, 1, 5), 20],
+        [gd(2012, 1, 6), 85],
+        [gd(2012, 1, 7), 7]
+    ];
 
-        var data2 = [
-            [gd(2012, 1, 1), 82],
-            [gd(2012, 1, 2), 23],
-            [gd(2012, 1, 3), 66],
-            [gd(2012, 1, 4), 9],
-            [gd(2012, 1, 5), 119],
-            [gd(2012, 1, 6), 6],
-            [gd(2012, 1, 7), 9]
-        ];
-        $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-            data1, data2
-        ], {
-            series: {
-                lines: {
-                    show: false,
-                    fill: true
-                },
-                splines: {
-                    show: true,
-                    tension: 0.4,
-                    lineWidth: 1,
-                    fill: 0.4
-                },
-                points: {
-                    radius: 0,
-                    show: true
-                },
-                shadowSize: 2
+    var data2 = [
+        [gd(2012, 1, 1), 82],
+        [gd(2012, 1, 2), 23],
+        [gd(2012, 1, 3), 66],
+        [gd(2012, 1, 4), 9],
+        [gd(2012, 1, 5), 119],
+        [gd(2012, 1, 6), 6],
+        [gd(2012, 1, 7), 9]
+    ];
+    $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+        data1, data2
+    ], {
+        series: {
+            lines: {
+                show: false,
+                fill: true
             },
-            grid: {
-                verticalLines: true,
-                hoverable: true,
-                clickable: true,
-                tickColor: "#d5d5d5",
-                borderWidth: 1,
-                color: '#fff'
+            splines: {
+                show: true,
+                tension: 0.4,
+                lineWidth: 1,
+                fill: 0.4
             },
-            colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-            xaxis: {
-                tickColor: "rgba(51, 51, 51, 0.06)",
-                mode: "time",
-                tickSize: [1, "day"],
-                //tickLength: 10,
-                axisLabel: "Date",
-                axisLabelUseCanvas: true,
-                axisLabelFontSizePixels: 12,
-                axisLabelFontFamily: 'Verdana, Arial',
-                axisLabelPadding: 10
+            points: {
+                radius: 0,
+                show: true
             },
-            yaxis: {
-                ticks: 8,
-                tickColor: "rgba(51, 51, 51, 0.06)",
-            },
-            tooltip: false
-        });
-
-        function gd(year, month, day) {
-            return new Date(year, month - 1, day).getTime();
-        }
+            shadowSize: 2
+        },
+        grid: {
+            verticalLines: true,
+            hoverable: true,
+            clickable: true,
+            tickColor: "#d5d5d5",
+            borderWidth: 1,
+            color: '#fff'
+        },
+        colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+        xaxis: {
+            tickColor: "rgba(51, 51, 51, 0.06)",
+            mode: "time",
+            tickSize: [1, "day"],
+            //tickLength: 10,
+            axisLabel: "Date",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verdana, Arial',
+            axisLabelPadding: 10
+        },
+        yaxis: {
+            ticks: 8,
+            tickColor: "rgba(51, 51, 51, 0.06)",
+        },
+        tooltip: false
     });
+
+    function gd(year, month, day) {
+        return new Date(year, month - 1, day).getTime();
+    }
+});
         </script>
         <!-- /Flot -->
 
@@ -584,5 +602,44 @@
             gauge.setTextField(document.getElementById("gauge-text"));
         </script>
         <!-- /gauge.js -->
+        <script type="text/javascript">
+            var SITE_ROOT = '<?php echo url('/'); ?>/';
+            var myApp = angular.module('myApp', ['bw.paging']);
+            myApp.factory('$apply', function ($rootScope) {
+                return function (fn) {
+                    setTimeout(function () {
+                        $rootScope.$apply(fn);
+                    });
+                };
+            });
+
+            myApp.directive('ngDom', function ($apply) {
+                return {
+                    scope: {'ngDom': '='},
+                    link: function (scope, elem) {
+                        scope.ngDom = elem[0];
+                        $apply(function () {
+                            scope.ngDom = elem[0];
+                        });
+                    }
+                };
+            });
+            //-------- ng-enter ---------//
+            myApp.directive('ngEnter', function () {
+                return function (scope, element, attrs) {
+                    element.bind("keydown keypress", function (event) {
+                        if (event.which === 13) {
+                            scope.$apply(function () {
+                                scope.$eval(attrs.ngEnter);
+                            });
+
+                            event.preventDefault();
+                        }
+                    });
+                };
+            });
+        </script>
+        @yield('js')
+
     </body>
 </html>

@@ -10,7 +10,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Danh mục sản phẩm</h3>
+                <h3>Users Manage</h3>
             </div>
 
             <div class="title_right">
@@ -32,7 +32,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Sản phẩm</h2>
+                        <h2>Users</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -52,28 +52,42 @@
                                         <input type="checkbox" id="check-all" class="flat" name="table_records">
                                     </th>
                                     <th class="text-center" style="width:5%">STT</th>
-                                    <th class="text-center" style="width:25%">Tên sản phẩm</th>
-                                    <th class="text-center" style="width:15%">Màu</th>
-                                    <th class="text-center" style="width:15%">Size</th>
-                                    <th class="text-center" style="width:10%">Số lượng</th>
-                                    <th class="text-center" style="width:15%">Giá</th>
-                                    <th class="text-center" style="width:10%">Giảm giá</th>
+                                    <th class="text-center" style="width:25%">Fullname</th>
+                                    <th class="text-center" style="width:10%">Gender</th>
+                                    <th class="text-center" style="width:15%">Email</th>
+                                    <th class="text-center" style="width:15%">Phone number</th>
+                                    <th class="text-center" style="width:10%">Status</th>
+                                    <th class="text-center" style="width:15%">Action</th>
+                                    
                                 </tr>
                             </thead>
 
                             <tbody>
-                                <?php foreach ($list_products as $key => $value): ?>
+                                <?php foreach ($list_users as $key => $value): ?>
                                     <tr>
                                         <td class="text-center" style="width:5%">
                                             <input type="checkbox" class="flat checkbox" name="table_records">
                                         </td>
                                         <td class="text-center" style="width:5%"><?php echo (int) ($key + 1) ?></td>
-                                        <td class="text-center" style="width:25%"><?php echo $value->product_name; ?></td>
-                                        <td class="text-center" style="width:15%"><?php echo $value->product_color; ?></td>
-                                        <td class="text-center" style="width:15%"><?php echo (int) $value->product_size; ?></td>
-                                        <td class="text-center" style="width:10%"><?php echo $value->product_quantity; ?></td>
-                                        <td class="text-center" style="width:15%"><?php echo $value->product_price; ?></td>
-                                        <td class="text-center" style="width:10%"><?php echo (int) ($value->product_discount * 100); ?> %</td>
+                                        <td class="text-center" style="width:25%"><?php echo $value->fullname; ?></td>
+                                        <td class="text-center" style="width:10%"><?php echo $value->gender; ?></td>
+                                        <td class="text-center" style="width:15%"><?php echo $value->email; ?></td>
+                                        <td class="text-center" style="width:15%"><?php echo $value->phone_number;?></td>
+                                        <td class="text-center" style="width:10%">
+                                            <?php echo $value->status? '<button type="button" class="btn btn-round btn-success">Active</button>':'<button type="button" class="btn btn-round btn-danger">Not Active</button>'; ?>
+                                        </td>
+                                        <td class="text-center" style="width:15%">
+                                            <?php 
+                                            if($value->level == 1){
+                                                echo $level = "<ul class='list-inline list-unstyled action_person'><li><span class='fa fa-list'></span></li>"
+                                                        . "<li><span class='fa fa-eye'></span></li>"
+                                                        . "<li><span class='fa fa-pencil-square-o '></span></li>"
+                                                        . "<li><span class='fa fa-trash-o'></span></li></ul>";
+                                            } 
+                                            ?>
+
+                                        </td>
+                                        
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
