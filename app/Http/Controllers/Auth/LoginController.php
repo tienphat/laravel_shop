@@ -58,7 +58,7 @@ use AuthenticatesUsers;
             // Authentication passed...
             return redirect('admin');
         } else {
-            $stt = "Đăng nhập thất bại, hãy kiểm tra Tài khoản và Mật khẩu!";
+            $stt = "Thông tin tài khoản hoặc mật khẩu không đúng!";
             return redirect('login')->withInput($request->only('email', 'remember'))->with('status', $stt);
         }
     }

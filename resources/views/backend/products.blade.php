@@ -1,10 +1,11 @@
-@extends('backend.master')
+<>
+@extends('backend.layout.master')
 
 @section('css')
 <link rel="stylesheet" href="{{asset('public/backend/css/products.css')}}" />
 @endsection
 
-@section('page_content')
+@section('content')
 <!-- page content -->
 <div class="right_col" role="main" ng-controller="products_page">
     <div class="">
@@ -54,7 +55,7 @@
 <!--                        <p class="text-muted font-13 m-b-30">
                             The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
                         </p>-->
-                        <table id="datatable-buttons" class="table table-striped table-bordered bulk_action">
+                        <table id="datatable-buttons" class="table table-striped table-bordered table-responsive bulk_action">
                             <thead>
                                 <tr>
                                     <th class="text-center" style="width:5%" >
@@ -65,24 +66,26 @@
                                     <th class="text-center" style="width:15%">Màu</th>
                                     <th class="text-center" style="width:15%">Size</th>
                                     <th class="text-center" style="width:10%">Số lượng</th>
-                                    <th class="text-center" style="width:10%">Giảm giá</th>
                                     <th class="text-center" style="width:15%">Giá</th>
+                                    <th class="text-center" style="width:10%">Giảm giá</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                <tr ng-repeat='item in listProducts'>
+                                <?php foreach($list_products as $key => $value): ?>
+                                <tr>
                                     <td class="text-center" style="width:5%">
                                         <input type="checkbox" class="flat" name="table_records">
                                     </td>
-                                    <td class="text-center" style="width:5%">@{{$index + 1}}</td>
-                                    <td class="text-center" style="width:25%">@{{item.product_name}}</td>
-                                    <td class="text-center" style="width:15%">@{{item.product_color}}</td>
-                                    <td class="text-center" style="width:15%">@{{item.product_size}}</td>
-                                    <td class="text-center" style="width:10%">@{{item.product_quantity}}</td>
-                                    <td class="text-center" style="width:10%">@{{item.product_discount * 100}} %</td>
-                                    <td class="text-center" style="width:15%">@{{item.product_price}}</td>
+                                    <td class="text-center" style="width:5%"><?php echo (int)($key +1) ?></td>
+                                    <td class="text-center" style="width:25%"><?php echo $value->product_name; ?></td>
+                                    <td class="text-center" style="width:15%"><?php echo $value->product_color; ?></td>
+                                    <td class="text-center" style="width:15%"><?php echo (int)$value->product_size; ?></td>
+                                    <td class="text-center" style="width:10%"><?php echo $value->product_quantity; ?></td>
+                                    <td class="text-center" style="width:15%"><?php echo $value->product_price; ?></td>
+                                    <td class="text-center" style="width:10%"><?php echo (int)($value->product_discount * 100); ?> %</td>
                                 </tr>
+                                <?php endforeach ?>
                                 <tr>
                                     <td><input type="checkbox" class="flat" name="table_records"></td>
                                     <td>Tiger Nixon</td>

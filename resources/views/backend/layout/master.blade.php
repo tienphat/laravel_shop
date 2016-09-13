@@ -10,20 +10,20 @@
         <title>Gentellela Alela! | </title>
 
         <!-- Bootstrap -->
-        <link href="public/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{asset('public/libs/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
         <!-- Font Awesome -->
-        <link href="public/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="{{asset('public/libs/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
         <!-- NProgress -->
-        <link href="public/libs/nprogress/nprogress.css" rel="stylesheet">
+        <link href="{{asset('public/libs/nprogress/nprogress.css')}}" rel="stylesheet">
         <!-- iCheck -->
-        <link href="public/libs/iCheck/skins/flat/green.css" rel="stylesheet">
+        <link href="{{asset('public/libs/iCheck/skins/flat/green.css')}}" rel="stylesheet">
         <!-- bootstrap-progressbar -->
-        <link href="public/libs/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+        <link href="{{asset('public/libs/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet">
         <!-- JQVMap -->
-        <link href="public/libs/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+        <link href="{{asset('public/libs/jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet"/>
 
         <!-- Custom Theme Style -->
-        <link href="public/build/css/custom.min.css" rel="stylesheet">
+        <link href="{{asset('public/build/css/custom.min.css')}}" rel="stylesheet">
     </head>
 
     <body class="nav-md">
@@ -32,7 +32,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+                            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Giant Shop!</span></a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -54,7 +54,7 @@
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                                <h3>General</h3>
+                                <!--<h3>Giant Shop</h3>-->
                                 <ul class="nav side-menu">
                                     <li><a href="{{url('/admin')}}"><i class="fa fa-home"></i> Home</a>
                                         <!--                    <ul class="nav child_menu">
@@ -63,6 +63,7 @@
                                                               <li><a href="index3.html">Dashboard3</a></li>
                                                             </ul>-->
                                     </li>
+                                    <li><a><i class="fa fa-table"></i> Category <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a href="{{url('admin/products')}}">Products</a></li><li><a href="tables_dynamic.html">Table Dynamic</a></li></ul></li>
                                     <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="form.html">General Form</a></li>
@@ -86,12 +87,7 @@
                                             <li><a href="calendar.html">Calendar</a></li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li><a href="tables.html">Tables</a></li>
-                                            <li><a href="tables_dynamic.html">Table Dynamic</a></li>
-                                        </ul>
-                                    </li>
+                                    
                                     <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="chartjs.html">Chart JS</a></li>
@@ -166,7 +162,7 @@
                             <a data-toggle="tooltip" data-placement="top" title="Lock">
                                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                             </a>
-                            <a data-toggle="tooltip" data-placement="top" title="Logout">
+                            <a href="{{url('admin/logout')}}" data-toggle="tooltip" data-placement="top" title="Logout">
                                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                             </a>
                         </div>
@@ -223,7 +219,7 @@
                                         </li>
                                         <li>
                                             <a>
-                                                <span class="image"><img src="public/images/img.jpg" alt="Profile Image" /></span>
+                                                <span class="image"><img src="{{asset('public/images/img.jpg')}}" alt="Profile Image" /></span>
                                                 <span>
                                                     <span>John Smith</span>
                                                     <span class="time">3 mins ago</span>
@@ -235,7 +231,7 @@
                                         </li>
                                         <li>
                                             <a>
-                                                <span class="image"><img src="public/images/img.jpg" alt="Profile Image" /></span>
+                                                <span class="image"><img src="{{asset('public/images/img.jpg')}}" alt="Profile Image" /></span>
                                                 <span>
                                                     <span>John Smith</span>
                                                     <span class="time">3 mins ago</span>
@@ -247,7 +243,7 @@
                                         </li>
                                         <li>
                                             <a>
-                                                <span class="image"><img src="public/images/img.jpg" alt="Profile Image" /></span>
+                                                <span class="image"><img src="{{asset('public/images/img.jpg')}}" alt="Profile Image" /></span>
                                                 <span>
                                                     <span>John Smith</span>
                                                     <span class="time">3 mins ago</span>
@@ -280,7 +276,7 @@
                 <!-- footer content -->
                 <footer>
                     <div class="pull-right">
-                        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                        GiantShop - Admin Dashboard by TienPhat
                     </div>
                     <div class="clearfix"></div>
                 </footer>
@@ -289,45 +285,45 @@
         </div>
 
         <!-- jQuery -->
-        <script src="public/libs/jquery/dist/jquery.min.js"></script>
+        <script src="{{asset('public/libs/jquery/dist/jquery.min.js')}}"></script>
         <!-- Bootstrap -->
-        <script src="public/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="{{asset('public/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
         <!-- FastClick -->
-        <script src="public/libs/fastclick/lib/fastclick.js"></script>
+        <script src="{{asset('public/libs/fastclick/lib/fastclick.js')}}"></script>
         <!-- NProgress -->
-        <script src="public/libs/nprogress/nprogress.js"></script>
+        <script src="{{asset('public/libs/nprogress/nprogress.js')}}"></script>
         <!-- Chart.js -->
-        <script src="public/libs/Chart.js/dist/Chart.min.js"></script>
+        <script src="{{asset('public/libs/Chart.js/dist/Chart.min.js')}}"></script>
         <!-- gauge.js -->
-        <script src="public/libs/gauge.js/dist/gauge.min.js"></script>
+        <script src="{{asset('public/libs/gauge.js/dist/gauge.min.js')}}"></script>
         <!-- bootstrap-progressbar -->
-        <script src="public/libs/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+        <script src="{{asset('public/libs/bootstrap-progressbar/bootstrap-progressbar.min.js')}}"></script>
         <!-- iCheck -->
-        <script src="public/libs/iCheck/icheck.min.js"></script>
+        <script src="{{asset('public/libs/iCheck/icheck.min.js')}}"></script>
         <!-- Skycons -->
-        <script src="public/libs/skycons/skycons.js"></script>
+        <script src="{{asset('public/libs/skycons/skycons.js')}}"></script>
         <!-- Flot -->
-        <script src="public/libs/Flot/jquery.flot.js"></script>
-        <script src="public/libs/Flot/jquery.flot.pie.js"></script>
-        <script src="public/libs/Flot/jquery.flot.time.js"></script>
-        <script src="public/libs/Flot/jquery.flot.stack.js"></script>
-        <script src="public/libs/Flot/jquery.flot.resize.js"></script>
+        <script src="{{asset('public/libs/Flot/jquery.flot.js')}}"></script>
+        <script src="{{asset('public/libs/Flot/jquery.flot.pie.js')}}"></script>
+        <script src="{{asset('public/libs/Flot/jquery.flot.time.js')}}"></script>
+        <script src="{{asset('public/libs/Flot/jquery.flot.stack.js')}}"></script>
+        <script src="{{asset('public/libs/Flot/jquery.flot.resize.js')}}"></script>
         <!-- Flot plugins -->
-        <script src="public/libs/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-        <script src="public/libs/flot-spline/js/jquery.flot.spline.min.js"></script>
-        <script src="public/libs/flot.curvedlines/curvedLines.js"></script>
+        <script src="{{asset('public/libs/flot.orderbars/js/jquery.flot.orderBars.js')}}"></script>
+        <script src="{{asset('public/libs/flot-spline/js/jquery.flot.spline.min.js')}}"></script>
+        <script src="{{asset('public/libs/flot.curvedlines/curvedLines.js')}}"></script>
         <!-- DateJS -->
-        <script src="public/libs/Datebuild/date.js"></script>
+        <script src="{{asset('public/libs/Datebuild/date.js')}}"></script>
         <!-- JQVMap -->
-        <script src="public/libs/jqvmap/dist/jquery.vmap.js"></script>
-        <script src="public/libs/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-        <script src="public/libs/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+        <script src="{{asset('public/libs/jqvmap/dist/jquery.vmap.js')}}"></script>
+        <script src="{{asset('public/libs/jqvmap/dist/maps/jquery.vmap.world.js')}}"></script>
+        <script src="{{asset('public/libs/jqvmap/examples/js/jquery.vmap.sampledata.js')}}"></script>
         <!-- bootstrap-daterangepicker -->
-        <script src="public/js/moment/moment.min.js"></script>
-        <script src="public/js/datepicker/daterangepicker.js"></script>
+        <script src="{{asset('public/js/moment/moment.min.js')}}"></script>
+        <script src="{{asset('public/js/datepicker/daterangepicker.js')}}"></script>
 
         <!-- Custom Theme Scripts -->
-        <script src="public/build/js/custom.min.js"></script>
+        <script src="{{asset('public/build/js/custom.min.js')}}"></script>
 
         <!-- Flot -->
         <script>

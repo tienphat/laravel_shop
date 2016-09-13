@@ -13,6 +13,7 @@
 
         <script type="text/javascript" src="{{asset('public/js/libs/jquery-2.2.3.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('public/js/libs/bootstrap.js')}}"></script>
+        <script type="text/javascript" src="{{asset('public/js/login.js')}}"></script>
     </head>
 
     <body>
@@ -20,7 +21,7 @@
             <!-- BEGIN LOGO -->
             <div class="logo">
                 <a href="index.html">
-                    <img src="/img/logo-big.png" alt="" /> </a>
+                    <img src="{{url('public/ic_shop.png')}}" alt="Giant Shop" /> </a>
             </div>
             <!-- END LOGO -->
             <!-- BEGIN LOGIN -->
@@ -51,11 +52,12 @@
                             <input type="checkbox" name="remember" value="1" />Remember
                             <span></span>
                         </label>
-                        <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
+                        <a href="javascript:void(0)" id="forget-password" onclick="actionForm('forget_password')" class="forget-password">Forgot Password?</a>
                     </div>
                     <div class="create-account">
                         <p>
-                            <a  href="{{url('admin/forgotPassword')}}" id="register-btn" class="uppercase">Create an account</a>
+                            <!--<a  href="javascript:void(0)" id="register-btn" onclick="actionForm('register_btn')" class="uppercase">Create an account</a>-->
+                            <a  href="javascript:void(0)" class="uppercase">Welcome to Login Admin</a>
                         </p>
                     </div>
                 </form>
@@ -67,20 +69,20 @@
                     <div class="form-group">
                         <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" /> </div>
                     <div class="form-actions">
-                        <button type="button" id="back-btn" class="btn green btn-outline">Back</button>
+                        <button type="button" id="back-btn" onclick="actionForm('back_btn')"  class="btn green btn-outline">Back</button>
                         <button type="submit" class="btn btn-success uppercase pull-right">Submit</button>
                     </div>
                 </form>
                 <!-- END FORGOT PASSWORD FORM -->
                 <!-- BEGIN REGISTRATION FORM -->
-                <form class="register-form" action="index.html" method="post">
+<!--                <form class="register-form" action="index.html" method="post">
                     <h3 class="font-green">Sign Up</h3>
                     <p class="hint"> Enter your personal details below: </p>
                     <div class="form-group">
                         <label class="control-label visible-ie8 visible-ie9">Full Name</label>
                         <input class="form-control placeholder-no-fix" type="text" placeholder="Full Name" name="fullname" /> </div>
                     <div class="form-group">
-                        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                        ie8, ie9 does not support html5 placeholder, so we just show field title for that
                         <label class="control-label visible-ie8 visible-ie9">Email</label>
                         <input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" /> </div>
                     <div class="form-group">
@@ -110,13 +112,13 @@
                         <div id="register_tnc_error"> </div>
                     </div>
                     <div class="form-actions">
-                        <button type="button" id="register-back-btn" class="btn green btn-outline">Back</button>
+                        <button type="button" id="register-back-btn" onclick="actionForm('register_back_btn')" class="btn green btn-outline">Back</button>
                         <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
                     </div>
-                </form>
+                </form>-->
                 <!-- END REGISTRATION FORM -->
             </div>
-            <div class="copyright"> 2016 © TienPhat. Admin Dashboard. </div>
+            <div class="copyright"> 2016 © TienPhat. Admin Login. </div>
         </div>
 
 

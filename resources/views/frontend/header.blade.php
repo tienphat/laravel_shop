@@ -71,7 +71,7 @@
                 <div class="header-bottom">
                     <div class="container">
                         <div class="row header-main">
-                            <div class="col-md-4 col-sm-5 col-xs-12"><a href="{{ url('/')}}"><img src="{{ asset('public/frontend/img/ic_shop.png')}}" alt="Shop"></a></div>
+                            <div class="col-md-4 col-sm-5 col-xs-12"><a href="{{ url('/')}}"><img src="{{ asset('public/ic_shop.png')}}" alt="Shop"></a></div>
                             <div class="col-md-5 col-sm-5 col-xs-9">
                                 <div class="form-search">
                                     <input type="text" id="search_product" class="search" placeholder="Nhập thông tin tìm kiếm">

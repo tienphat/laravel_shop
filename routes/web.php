@@ -1,13 +1,6 @@
 <?php
 
-/*
-  |--------------------------------------------------------------------------
-  | Application Routes
-  |--------------------------------------------------------------------------
- */
-
-Route::get('/', 'HomeController@index');
-
+//---------Backend--------
 Route::get('/admin', function(){
     if(Auth::check()){
         return view('backend.index');
@@ -16,11 +9,18 @@ Route::get('/admin', function(){
         return redirect('login');
     }
 });
-//----------Login
+//----------Login--------
 Route::get('login', 'Auth\LoginController@getLogin');
 Route::post('admin/postLogin', 'Auth\LoginController@postLogin');
 Route::get('admin/logout', 'Auth\LoginController@logout');
 Route::get('admin/forgotPassword', 'Auth\LoginController@forgotPassword');
+//----------Backend continue
+Route::get('admin/products', 'Admin\ProductsController@index');
+
+
+
+//---------Frontend--------
+Route::get('/', 'HomeController@index');
 
 Route::get('/san-pham', 'ProductsController@index');
 Route::get('/lien-he', 'ContactController@index');
@@ -44,5 +44,9 @@ Route::get('/san-pham', 'ProductsController@index');
 Route::get('/san-pham/{num}', 'ProductsController@category');
 Route::get('/san-pham/{any}', 'ProductsController@category');
 Route::get('/san-pham/{any}/{num}', 'ProductsController@category');
+
+
+
+
 
 //Route::get('{any}', 'ProductsController@show');   

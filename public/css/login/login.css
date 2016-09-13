@@ -1,3 +1,6 @@
+html {
+    background: #364150;
+}
 .login {
     background-color: #364150!important
 }
@@ -5,6 +8,9 @@
     margin: 60px auto 0;
     padding: 15px;
     text-align: center
+}
+.login div#formMessage {
+    font-size: 13px;
 }
 .login .content {
     background-color: #fff;
@@ -64,7 +70,7 @@
 }
 .login .content .forget-form,
 .login .content .register-form {
-    display: none
+    display: none;
 }
 .login .content .form-title {
     font-weight: 300;
