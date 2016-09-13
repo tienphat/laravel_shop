@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.4.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2016 at 04:28 AM
--- Server version: 10.1.10-MariaDB
--- PHP Version: 5.6.19
+-- Generation Time: Sep 13, 2016 at 03:20 AM
+-- Server version: 5.6.25
+-- PHP Version: 5.6.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `customer`
 --
 
-CREATE TABLE `customer` (
+CREATE TABLE IF NOT EXISTS `customer` (
   `customer_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `organisation_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
@@ -38,7 +38,7 @@ CREATE TABLE `customer` (
 -- Table structure for table `customer_payment_methods`
 --
 
-CREATE TABLE `customer_payment_methods` (
+CREATE TABLE IF NOT EXISTS `customer_payment_methods` (
   `customer_payment_id` int(11) NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
   `payment_method_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `customer_payment_methods` (
 -- Table structure for table `invoices`
 --
 
-CREATE TABLE `invoices` (
+CREATE TABLE IF NOT EXISTS `invoices` (
   `invoice_number` int(11) NOT NULL,
   `order_id` int(11) DEFAULT NULL,
   `invoice_status_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE `invoices` (
 -- Table structure for table `menu`
 --
 
-CREATE TABLE `menu` (
+CREATE TABLE IF NOT EXISTS `menu` (
   `id` int(11) NOT NULL,
   `level` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE `menu` (
   `access` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `trash` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `menu`
@@ -126,7 +126,7 @@ INSERT INTO `menu` (`id`, `level`, `title`, `link`, `parentid`, `created`, `crea
 -- Table structure for table `migrations`
 --
 
-CREATE TABLE `migrations` (
+CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -144,7 +144,7 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 -- Table structure for table `orders`
 --
 
-CREATE TABLE `orders` (
+CREATE TABLE IF NOT EXISTS `orders` (
   `order_id` int(11) NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
   `order_status_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -157,7 +157,7 @@ CREATE TABLE `orders` (
 -- Table structure for table `order_items`
 --
 
-CREATE TABLE `order_items` (
+CREATE TABLE IF NOT EXISTS `order_items` (
   `order_item_id` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
   `order_id` int(11) DEFAULT NULL,
@@ -175,7 +175,7 @@ CREATE TABLE `order_items` (
 -- Table structure for table `password_resets`
 --
 
-CREATE TABLE `password_resets` (
+CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
@@ -187,7 +187,7 @@ CREATE TABLE `password_resets` (
 -- Table structure for table `payments`
 --
 
-CREATE TABLE `payments` (
+CREATE TABLE IF NOT EXISTS `payments` (
   `payment_id` int(11) NOT NULL,
   `invoice_number` int(11) DEFAULT NULL,
   `payment_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
@@ -200,7 +200,7 @@ CREATE TABLE `payments` (
 -- Table structure for table `products`
 --
 
-CREATE TABLE `products` (
+CREATE TABLE IF NOT EXISTS `products` (
   `product_id` int(10) NOT NULL,
   `product_type_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `product_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -231,7 +231,7 @@ INSERT INTO `products` (`product_id`, `product_type_code`, `product_name`, `prod
 -- Table structure for table `ref_invoice_status_codes`
 --
 
-CREATE TABLE `ref_invoice_status_codes` (
+CREATE TABLE IF NOT EXISTS `ref_invoice_status_codes` (
   `invoice_status_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `invoice_status_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -242,7 +242,7 @@ CREATE TABLE `ref_invoice_status_codes` (
 -- Table structure for table `ref_order_item_status_codes`
 --
 
-CREATE TABLE `ref_order_item_status_codes` (
+CREATE TABLE IF NOT EXISTS `ref_order_item_status_codes` (
   `order_item_status_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `oder_item_status_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -253,7 +253,7 @@ CREATE TABLE `ref_order_item_status_codes` (
 -- Table structure for table `ref_order_status_codes`
 --
 
-CREATE TABLE `ref_order_status_codes` (
+CREATE TABLE IF NOT EXISTS `ref_order_status_codes` (
   `order_status_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `order_status_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -264,7 +264,7 @@ CREATE TABLE `ref_order_status_codes` (
 -- Table structure for table `ref_payment_methods`
 --
 
-CREATE TABLE `ref_payment_methods` (
+CREATE TABLE IF NOT EXISTS `ref_payment_methods` (
   `payment_method_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `payment_method_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -275,7 +275,7 @@ CREATE TABLE `ref_payment_methods` (
 -- Table structure for table `ref_product_types`
 --
 
-CREATE TABLE `ref_product_types` (
+CREATE TABLE IF NOT EXISTS `ref_product_types` (
   `product_type_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `parent_product_type_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `product_type_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
@@ -287,7 +287,7 @@ CREATE TABLE `ref_product_types` (
 -- Table structure for table `shipments`
 --
 
-CREATE TABLE `shipments` (
+CREATE TABLE IF NOT EXISTS `shipments` (
   `shipment_id` int(11) NOT NULL,
   `order_id` int(11) DEFAULT NULL,
   `invoice_number` int(11) DEFAULT NULL,
@@ -302,7 +302,7 @@ CREATE TABLE `shipments` (
 -- Table structure for table `shipment_items`
 --
 
-CREATE TABLE `shipment_items` (
+CREATE TABLE IF NOT EXISTS `shipment_items` (
   `shipment_id` int(11) NOT NULL,
   `order_item_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -313,30 +313,49 @@ CREATE TABLE `shipment_items` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
-  `email` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `name` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `password` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `gender` int(11) DEFAULT NULL,
-  `fullname` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `address` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `phone_number` varchar(15) CHARACTER SET latin1 DEFAULT NULL,
-  `remember_token` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `remember_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'NO',
   `updated_at` timestamp NULL DEFAULT NULL,
-  `logined_at` timestamp NULL DEFAULT NULL,
-  `level` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `trash` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `name`, `password`, `gender`, `fullname`, `address`, `phone_number`, `remember_token`, `created_at`, `updated_at`, `logined_at`, `level`, `status`, `trash`) VALUES
-(1, 'quangphatc3@gmail.com', 'admin', '$2a$06$Q6CBL0glUPHGr/gL9rFMoevIqQhEdRofkMjosaerT6fhazkNDlimy', 1, 'Ngô Ti?n Phát', 'C?u Gi?y, Hà N?i', '0967085852', 'YES', '2016-08-31 17:56:52', '2016-08-31 17:57:00', NULL, 1, 1, 0);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `updated_at`, `created_at`) VALUES
+(1, 'admin', 'quangphatc3@gmail.com', '$2a$06$Q6CBL0glUPHGr/gL9rFMoevIqQhEdRofkMjosaerT6fhazkNDlimy', 'Bn6mJIHqtbB52xgLKmWPJbQcEhyVWS3mcdRODOt8EGWNzkjptYpwIfZIOvIw', '2016-09-12 08:38:37', '2016-08-31 17:56:52'),
+(2, 'quangphat', 'quangphattt95@gmail.com', '$2y$10$VSJiTiYzB6jrnlrbFDQAy.Mv2Z9sx5n9TtntmMraxF6C6a4JNks92', 'mRlLyVBsO9T5xZJPzC9akPMeJbtiXRAvVrYLYpncSWE7XG9LZGUKqCHCDBVg', '2016-09-12 08:30:37', '2016-09-10 18:59:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_detail`
+--
+
+CREATE TABLE IF NOT EXISTS `users_detail` (
+  `id` int(11) NOT NULL,
+  `users_id` int(11) NOT NULL,
+  `gender` int(11) DEFAULT NULL,
+  `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone_number` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `logined_at` timestamp NULL DEFAULT NULL,
+  `level` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `trash` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `users_detail`
+--
+
+INSERT INTO `users_detail` (`id`, `users_id`, `gender`, `fullname`, `address`, `phone_number`, `logined_at`, `level`, `status`, `trash`) VALUES
+(1, 1, 1, 'Ngô Tiến Phát', 'Cầu Giấy, Hà Nội', '0967085852', NULL, 1, 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -448,12 +467,19 @@ ALTER TABLE `shipments`
 -- Indexes for table `shipment_items`
 --
 ALTER TABLE `shipment_items`
-  ADD PRIMARY KEY (`shipment_id`,`order_item_id`);
+  ADD PRIMARY KEY (`shipment_id`,`order_item_id`),
+  ADD KEY `FK_shipment_items` (`order_item_id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users_detail`
+--
+ALTER TABLE `users_detail`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -479,7 +505,7 @@ ALTER TABLE `invoices`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `orders`
 --
@@ -504,7 +530,12 @@ ALTER TABLE `shipments`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `users_detail`
+--
+ALTER TABLE `users_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

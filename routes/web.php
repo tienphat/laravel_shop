@@ -7,19 +7,26 @@
  */
 
 Route::get('/', 'HomeController@index');
-Route::get('/admin', 'Admin\AdminController@index');
-//---------Login-----------//
-Route::get('/admin/login', 'AuthController@login')->middleware('auth');
-Route::post('/admin/handleLogin', 'AuthController@handleLogin');
-//---------Products----------//
-Route::get('/admin/products', 'Admin\ProductsController@index');
+
+Route::get('/admin', function(){
+    if(Auth::check()){
+        return view('backend.index');
+    }
+    else{
+        return redirect('login');
+    }
+});
+//----------Login
+Route::get('login', 'Auth\LoginController@getLogin');
+Route::post('admin/postLogin', 'Auth\LoginController@postLogin');
+Route::get('admin/logout', 'Auth\LoginController@logout');
+Route::get('admin/forgotPassword', 'Auth\LoginController@forgotPassword');
 
 Route::get('/san-pham', 'ProductsController@index');
 Route::get('/lien-he', 'ContactController@index');
 Route::get('/gioi-thieu', 'IntroductionController@index');
 
-Route::group(array('prefix' => 'dich-vu'), function()
-{
+Route::group(array('prefix' => 'dich-vu'), function() {
     Route::get('/', 'ServicesController@index');
     Route::get('/{num}', 'ServicesController@index');
     Route::get('/{any}', 'ServicesController@show');
