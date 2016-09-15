@@ -69,12 +69,12 @@
                                             <input type="checkbox" class="flat checkbox" name="table_records">
                                         </td>
                                         <td class="text-center" style="width:5%"><?php echo (int) ($key + 1) ?></td>
-                                        <td class="text-center" style="width:25%"><?php echo $value->fullname; ?></td>
-                                        <td class="text-center" style="width:10%"><?php echo $value->gender; ?></td>
+                                        <td class="text-center" style="width:25%"><a href="{{url('admin/profile/<?php echo $value->id; ?>')}}"><?php echo $value->fullname; ?></a></td>
+                                        <td class="text-center" style="width:10%"><?php echo $value->gender? 'Male':'Female'; ?></td>
                                         <td class="text-center" style="width:15%"><?php echo $value->email; ?></td>
                                         <td class="text-center" style="width:15%"><?php echo $value->phone_number;?></td>
                                         <td class="text-center" style="width:10%">
-                                            <?php echo $value->status? '<button type="button" class="btn btn-round btn-success">Active</button>':'<button type="button" class="btn btn-round btn-danger">Not Active</button>'; ?>
+                                            <?php echo $value->status? '<button type="button" class="btn btn-round btn-success btn-xs">Active</button>':'<button type="button" class="btn btn-round btn-danger">Not Active</button>'; ?>
                                         </td>
                                         <td class="text-center" style="width:15%">
                                             <?php 
@@ -83,6 +83,10 @@
                                                         . "<li><span class='fa fa-eye'></span></li>"
                                                         . "<li><span class='fa fa-pencil-square-o '></span></li>"
                                                         . "<li><span class='fa fa-trash-o'></span></li></ul>";
+                                            }else{
+                                                echo $level = "<ul class='list-inline list-unstyled action_person'><li><span class='fa fa-list'></span></li>"
+                                                        . "<li><span class='fa fa-eye'></span></li>"
+                                                        . "<li><span class='fa fa-pencil-square-o '></span></li></ul>";
                                             } 
                                             ?>
 
@@ -103,13 +107,7 @@
 @endsection
 
 @section('js')
-<!-- jQuery <-->
-<script src="{{asset('public/libs/fastclick/lib/fastclick.js')}}"></script>
 
-<!-- NProgress -->
-<script src="{{asset('public/libs/nprogress/nprogress.js')}}"></script>
-<!-- iCheck -->
-<script src="{{asset('public/libs/iCheck/icheck.min.js')}}"></script>
 <!-- Datatables -->
 <script src="{{asset('public/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('public/libs/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
@@ -129,8 +127,9 @@
 
 <!-- Custom Theme Scripts -->
 
-<script src="{{asset('public/backend/js/products.js')}}"></script>
+<script type="text/javascript" src="{{asset('public/backend/js/products.js')}}"></script>
 
+<script type="text/javascript" src="{{asset('public/build/js/custom.js')}}"></script>
 <script type="text/javascript">
     //----------------Datatables-----------
     var $datatable = $('#datatable-buttons');

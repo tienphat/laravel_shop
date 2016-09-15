@@ -20,7 +20,7 @@
         <div class="login">
             <!-- BEGIN LOGO -->
             <div class="logo">
-                <a href="index.html">
+                <a href="{{url('/admin')}}">
                     <img src="{{url('public/ic_shop.png')}}" alt="Giant Shop" /> </a>
             </div>
             <!-- END LOGO -->
@@ -63,7 +63,7 @@
                 </form>
                 <!-- END LOGIN FORM -->
                 <!-- BEGIN FORGOT PASSWORD FORM -->
-                <form class="forget-form" action="index.html" method="post">
+                <form class="forget-form" action="{{url('/admin')}}" method="post">
                     <h3 class="font-green">Forget Password ?</h3>
                     <p> Enter your e-mail address below to reset your password. </p>
                     <div class="form-group">

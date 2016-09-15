@@ -701,3 +701,7 @@
     <!-- /page content -->
 
 @endsection
+
+@section('js')
+    <script src="{{asset('public/build/js/custom.js')}}"></script>
+@endsection

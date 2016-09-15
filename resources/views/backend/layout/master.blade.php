@@ -45,7 +45,7 @@
                                 <img src="{{asset('public/images/admin.jpg')}}" alt="..." class="img-circle profile_img">
                             </div>
                             <div class="profile_info">
-                                <span>Xin chào,</span>
+                                <span>Welcome,</span>
                                 <h2>Tiến Phát</h2>
                             </div>
                         </div>
@@ -199,14 +199,14 @@
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                        <li><a href="javascript:;"> Profile</a></li>
+                                        <li><a href="{{url('/admin/profile')}}"> Profile</a></li>
+                                        <li><a href="{{url('/')}}" target="_blank">Customer view</a></li>
                                         <li>
                                             <a href="javascript:;">
                                                 <span class="badge bg-red pull-right">50%</span>
                                                 <span>Settings</span>
                                             </a>
                                         </li>
-                                        <li><a href="javascript:;">Help</a></li>
                                         <li>
                                             <a href="{{url('admin/logout')}}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                         </li>
@@ -305,9 +305,9 @@
         <!-- FastClick -->
         <script src="{{asset('public/libs/fastclick/lib/fastclick.js')}}"></script>
         <!-- Custom Theme Scripts -->
-        <script src="{{asset('public/build/js/custom.js')}}"></script>
-        <script type="text/javascript" src="{{asset('public/js/libs/angular.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('public/js/libs/paging.js')}}"></script>
+        
+        <script src="{{asset('public/js/libs/angular.min.js')}}"></script>
+        <script src="{{asset('public/js/libs/paging.js')}}"></script>
 
         <!-- NProgress -->
         <script src="{{asset('public/libs/nprogress/nprogress.js')}}"></script>
@@ -341,7 +341,7 @@
         <script src="{{asset('public/js/moment/moment.min.js')}}"></script>
         <script src="{{asset('public/js/datepicker/daterangepicker.js')}}"></script>
 
-
+        
 
         <!-- Flot -->
         <script>

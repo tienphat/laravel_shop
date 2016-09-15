@@ -52,7 +52,7 @@ var CURRENT_URL = window.location.href.split('?')[0],
         $FOOTER = $('footer');
 
 // Sidebar
-$(document).ready(function () {
+//$(document).ready(function () {
     // TODO: This is some kind of easy fix, maybe we can improve this
     var setContentHeight = function () {
         // reset height
@@ -131,11 +131,11 @@ $(document).ready(function () {
             mouseWheel: {preventDefault: true}
         });
     }
-});
+//});
 // /Sidebar
 
 // Panel toolbox
-$(document).ready(function () {
+//$(document).ready(function () {
     $('.collapse-link').on('click', function () {
         var $BOX_PANEL = $(this).closest('.x_panel'),
                 $ICON = $(this).find('i'),
@@ -159,15 +159,15 @@ $(document).ready(function () {
 
         $BOX_PANEL.remove();
     });
-});
+//});
 // /Panel toolbox
 
 // Tooltip
-$(document).ready(function () {
+//$(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip({
         container: 'body'
     });
-});
+//});
 // /Tooltip
 
 // Progressbar
@@ -177,7 +177,7 @@ if ($(".progress .progress-bar")[0]) {
 // /Progressbar
 
 // Switchery
-$(document).ready(function () {
+//$(document).ready(function () {
     if ($(".js-switch")[0]) {
         var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
         elems.forEach(function (html) {
@@ -186,18 +186,18 @@ $(document).ready(function () {
             });
         });
     }
-});
+//});
 // /Switchery
 
 // iCheck
-$(document).ready(function () {
+//$(document).ready(function () {
     if ($("input.flat")[0]) {
         $('input.flat').iCheck({
             checkboxClass: 'icheckbox_flat-green',
             radioClass: 'iradio_flat-green'
         });
     }
-});
+//});
 // /iCheck
 
 // Table

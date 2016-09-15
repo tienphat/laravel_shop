@@ -17,8 +17,8 @@ Route::get('admin/forgotPassword', 'Auth\LoginController@forgotPassword');
 //----------Backend continue
 Route::get('admin/products', 'Admin\ProductsController@index');
 Route::get('admin/users', 'Admin\UsersController@index');
-
-
+Route::get('admin/profile', 'Admin\UsersController@profile');
+Route::post('admin/updateProfile', 'Admin\UsersController@updateProfile');
 
 //---------Frontend--------
 Route::get('/', 'HomeController@index');
@@ -45,9 +45,5 @@ Route::get('/san-pham', 'ProductsController@index');
 Route::get('/san-pham/{num}', 'ProductsController@category');
 Route::get('/san-pham/{any}', 'ProductsController@category');
 Route::get('/san-pham/{any}/{num}', 'ProductsController@category');
-
-
-
-
-
-//Route::get('{any}', 'ProductsController@show');   
+//
+//Route::get();

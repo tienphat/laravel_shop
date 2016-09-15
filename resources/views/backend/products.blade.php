@@ -114,7 +114,7 @@
 <script src="{{asset('public/libs/pdfmake/build/vfs_fonts.js')}}"></script>
 
 <!-- Custom Theme Scripts -->
-
+<script src="{{asset('public/build/js/custom.js')}}"></script>
 <script src="{{asset('public/backend/js/products.js')}}"></script>
 
 <script type="text/javascript">
