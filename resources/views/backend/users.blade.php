@@ -1,12 +1,12 @@
 @extends('backend.layout.master')
 
 @section('css')
-<link rel="stylesheet" href="{{asset('public/backend/css/products.css')}}" />
+<link rel="stylesheet" href="{{asset('public/backend/css/users.css')}}" />
 @endsection
 
 @section('content')
 <!-- page content -->
-<div class="right_col" role="main" ng-controller="products_page">
+<div class="right_col" role="main" ng-controller="content_users">
     <div class="">
         <div class="page-title">
             <div class="title_left">
@@ -32,17 +32,106 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Users</h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
-                        </ul>
+                        <div class="col-sm-2" style="padding: 0px;">
+                            <select name="datatable-buttons_length" aria-controls="datatable-buttons" class="form-control input-sm" style="font-size: 14px;">
+                                <option value="10" selected>Actions</option>
+                                <option value="25">Delete</option>
+                                <option value="50">Change Status</option>
+                                <option value="50">Update Attribute</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2 col-sm-offset-8" style="padding: 0px;">
+                            <button class="btn btn-success form-control btnAddNew" data-toggle="modal" data-target="#addNewModal">
+                                + Add User
+                            </button>
+                        </div>
                         <div class="clearfix"></div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="addNewModal" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <form class="form-horizontal form-label-left" id="frmAddUser" novalidate autocomplete="off" method="post">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">Add User</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+
+                                                    <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                                                    <div class="item form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Username <span class="required">*</span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" required="required" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="item form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Full Name <span class="required">*</span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input id="fullname" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="fullname" required="required" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="item form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Password <span class="required">*</span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input id="password" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="password" required="required" type="password">
+                                                        </div>
+                                                    </div>
+                                                    <div class="item form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Gender <span class="required">*</span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <h5>
+                                                                Male: <input type="radio" class="flat" name="gender" id="genderM" value="M" checked="" required /> 
+                                                                Female: <input type="radio" class="flat" name="gender" id="genderF" value="F" />
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+                                                        </div>
+                                                    </div>
+                                                    <div class="item form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Phone Number <span class="required">*</span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input type="text" id="number" name="phone_number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+                                                        </div>
+                                                    </div>
+                                                    <div class="item form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Address<span class="required">*</span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input type="text" id="number" name="address" required="required" class="form-control col-md-7 col-xs-12">
+                                                        </div>
+                                                    </div>
+                                                    <div class="item form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Website URL
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input type="url" id="website" name="website" class="form-control col-md-7 col-xs-12">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-success btnAddNewUser" ng-click="btnAddNewUser()">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <div class="x_content">
                         <table id="datatable-buttons" class="table table-striped table-bordered table-responsive bulk_action">
@@ -58,7 +147,7 @@
                                     <th class="text-center" style="width:15%">Phone number</th>
                                     <th class="text-center" style="width:10%">Status</th>
                                     <th class="text-center" style="width:15%">Action</th>
-                                    
+
                                 </tr>
                             </thead>
 
@@ -69,29 +158,29 @@
                                             <input type="checkbox" class="flat checkbox" name="table_records">
                                         </td>
                                         <td class="text-center" style="width:5%"><?php echo (int) ($key + 1) ?></td>
-                                        <td class="text-center" style="width:25%"><a href="{{url('admin/profile/<?php echo $value->id; ?>')}}"><?php echo $value->fullname; ?></a></td>
-                                        <td class="text-center" style="width:10%"><?php echo $value->gender? 'Male':'Female'; ?></td>
+                                        <td class="text-center" style="width:25%"><a href="{{url('admin/profile')}}/<?php echo $value->id; ?>"><?php echo $value->fullname; ?></a></td>
+                                        <td class="text-center" style="width:10%"><?php echo $value->gender ? 'Male' : 'Female'; ?></td>
                                         <td class="text-center" style="width:15%"><?php echo $value->email; ?></td>
-                                        <td class="text-center" style="width:15%"><?php echo $value->phone_number;?></td>
+                                        <td class="text-center" style="width:15%"><?php echo $value->phone_number; ?></td>
                                         <td class="text-center" style="width:10%">
-                                            <?php echo $value->status? '<button type="button" class="btn btn-round btn-success btn-xs">Active</button>':'<button type="button" class="btn btn-round btn-danger">Not Active</button>'; ?>
+                                            <?php echo $value->status ? '<button type="button" class="btn btn-round btn-success btn-xs">Active</button>' : '<button type="button" class="btn btn-round btn-danger">Not Active</button>'; ?>
                                         </td>
                                         <td class="text-center" style="width:15%">
-                                            <?php 
-                                            if($value->level == 1){
-                                                echo $level = "<ul class='list-inline list-unstyled action_person'><li><span class='fa fa-list'></span></li>"
-                                                        . "<li><span class='fa fa-eye'></span></li>"
-                                                        . "<li><span class='fa fa-pencil-square-o '></span></li>"
-                                                        . "<li><span class='fa fa-trash-o'></span></li></ul>";
-                                            }else{
-                                                echo $level = "<ul class='list-inline list-unstyled action_person'><li><span class='fa fa-list'></span></li>"
-                                                        . "<li><span class='fa fa-eye'></span></li>"
-                                                        . "<li><span class='fa fa-pencil-square-o '></span></li></ul>";
-                                            } 
+                                            <?php
+                                            if ($value->permission == 'MANAGE_USERS') {
+                                                echo "<ul class='list-inline list-unstyled action_person'><li><span class='fa fa-list'></span></li>"
+                                                . "<li><span class='fa fa-eye'></span></li>"
+                                                . "<li><span class='fa fa-pencil-square-o '></span></li>"
+                                                . "<li><span class='fa fa-trash-o'></span></li></ul>";
+                                            } else {
+                                                echo "<ul class='list-inline list-unstyled action_person'><li><span class='fa fa-list'></span></li>"
+                                                . "<li><span class='fa fa-eye'></span></li>"
+                                                . "<li><span class='fa fa-pencil-square-o '></span></li></ul>";
+                                            }
                                             ?>
 
                                         </td>
-                                        
+
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -127,9 +216,8 @@
 
 <!-- Custom Theme Scripts -->
 
-<script type="text/javascript" src="{{asset('public/backend/js/products.js')}}"></script>
-
 <script type="text/javascript" src="{{asset('public/build/js/custom.js')}}"></script>
+<script type="text/javascript" src="{{asset('public/backend/js/users.js')}}"></script>
 <script type="text/javascript">
     //----------------Datatables-----------
     var $datatable = $('#datatable-buttons');

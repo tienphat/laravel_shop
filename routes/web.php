@@ -3,12 +3,13 @@
 //---------Backend--------
 Route::get('/admin', function(){
     if(Auth::check()){
-        return view('backend.index');
+        return redirect('/dashboard');
     }
     else{
         return redirect('login');
     }
 });
+Route::get('/dashboard', 'Admin\AdminController@index');
 //----------Login--------
 Route::get('login', 'Auth\LoginController@getLogin');
 Route::post('admin/postLogin', 'Auth\LoginController@postLogin');
@@ -16,10 +17,11 @@ Route::get('admin/logout', 'Auth\LoginController@logout');
 Route::get('admin/forgotPassword', 'Auth\LoginController@forgotPassword');
 //----------Backend continue
 Route::get('admin/products', 'Admin\ProductsController@index');
+Route::get('admin/products/{id}', 'Admin\ProductsController@detailProduct');
 Route::get('admin/users', 'Admin\UsersController@index');
+Route::get('admin/customers', 'Admin\CustomersController@index');
 Route::get('admin/profile', 'Admin\UsersController@profile');
 Route::post('admin/updateProfile', 'Admin\UsersController@updateProfile');
-
 //---------Frontend--------
 Route::get('/', 'HomeController@index');
 
