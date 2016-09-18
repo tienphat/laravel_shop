@@ -86,6 +86,19 @@
                                         </ul>
                                     </li>
                                     <li>
+                                        <a><i class="fa fa-dollar"></i> Sales <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{url('admin/orders')}}">Orders</a></li>
+                                            <li><a href="{{url('admin/shipments')}}">Shipments</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-bar-chart-o"></i> Report <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{url('admin/report')}}">Report</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
                                         <a><i class="fa fa-cog"></i> System <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="{{url('admin/userGroup')}}">User Group</a></li>

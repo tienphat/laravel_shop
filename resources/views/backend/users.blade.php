@@ -40,7 +40,7 @@
                                 <option value="50">Update Attribute</option>
                             </select>
                         </div>
-                        <div class="col-sm-2 col-sm-offset-8" style="padding: 0px;">
+                        <div class="col-sm-2 pull-right" style="padding: 0px;">
                             <button class="btn btn-success form-control btnAddNew" data-toggle="modal" data-target="#addNewModal">
                                 <i class="fa fa-user-plus"></i> Add User
                             </button>
@@ -143,19 +143,19 @@
                         </div>
                     </div>
                     <div class="x_content">
-                        <table id="datatable-buttons" class="table table-striped table-bordered table-responsive bulk_action">
+                        <table id="datatable-buttons" class="table jambo_table table-striped table-bordered table-responsive bulk_action">
                             <thead>
                                 <tr>
-                                    <th class="text-center " style="width:5%" >
+                                    <th class="text-center ">
                                         <input type="checkbox" id="check-all" class="flat" name="table_records">
                                     </th>
-                                    <th class="text-center" style="width:5%">STT</th>
-                                    <th class="text-center" style="width:25%">Fullname</th>
-                                    <th class="text-center" style="width:10%">Gender</th>
-                                    <th class="text-center" style="width:15%">Email</th>
-                                    <th class="text-center" style="width:15%">Phone number</th>
-                                    <th class="text-center" style="width:10%">Status</th>
-                                    <th class="text-center" style="width:15%">Action</th>
+                                    <th class="text-center">STT</th>
+                                    <th class="text-center">Fullname</th>
+                                    <th class="text-center">Gender</th>
+                                    <th class="text-center" >Email</th>
+                                    <th class="text-center">Phone number</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center" >Action</th>
 
                                 </tr>
                             </thead>
@@ -163,18 +163,18 @@
                             <tbody>
                                 <?php foreach ($list_users as $key => $value): ?>
                                     <tr>
-                                        <td class="text-center" style="width:5%">
+                                        <td class="text-center">
                                             <input type="checkbox" class="flat checkbox" name="table_records">
                                         </td>
-                                        <td class="text-center" style="width:5%"><?php echo (int) ($key + 1) ?></td>
-                                        <td class="text-center" style="width:25%"><a href="{{url('admin/profile')}}/<?php echo $value->id; ?>"><?php echo $value->fullname; ?></a></td>
-                                        <td class="text-center" style="width:10%"><?php echo $value->gender ? 'Male' : 'Female'; ?></td>
-                                        <td class="text-center" style="width:15%"><?php echo $value->email; ?></td>
-                                        <td class="text-center" style="width:15%"><?php echo $value->phone_number; ?></td>
-                                        <td class="text-center" style="width:10%">
+                                        <td class="text-center"><?php echo (int) ($key + 1) ?></td>
+                                        <td class="text-center"><a href="{{url('admin/profile')}}/<?php echo $value->id; ?>"><?php echo $value->fullname; ?></a></td>
+                                        <td class="text-center"><?php echo $value->gender ? 'Male' : 'Female'; ?></td>
+                                        <td class="text-center"><?php echo $value->email; ?></td>
+                                        <td class="text-center"><?php echo $value->phone_number; ?></td>
+                                        <td class="text-center">
                                             <?php echo $value->status ? '<button type="button" class="btn btn-round btn-success btn-xs">Active</button>' : '<button type="button" class="btn btn-round btn-danger">Not Active</button>'; ?>
                                         </td>
-                                        <td class="text-center" style="width:15%">
+                                        <td class="text-center">
                                             <?php
                                             if ($value->permission == 'MANAGE_USERS') {
                                                 echo "<ul class='list-inline list-unstyled action_person'><li><span class='fa fa-list'></span></li>"

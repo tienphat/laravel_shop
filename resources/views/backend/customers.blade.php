@@ -45,7 +45,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <table id="datatable-buttons" class="table table-striped table-bordered table-responsive bulk_action">
+                        <table id="datatable-buttons" class="table table-striped table-bordered jambo_table table-responsive bulk_action">
                             <thead>
                                 <tr>
                                     <th class="text-center " style="width:5%" >
@@ -69,7 +69,7 @@
                                             <input type="checkbox" class="flat checkbox" name="table_records">
                                         </td>
                                         <td class="text-center" style="width:5%"><?php echo (int) ($key + 1) ?></td>
-                                        <td class="text-center" style="width:25%"><a href="{{url('admin/profile/<?php echo $value->id; ?>')}}"><?php echo $value->fullname; ?></a></td>
+                                        <td class="text-center" style="width:25%"><a href="{{url('admin/profile')}}/<?php echo $value->id; ?>"><?php echo $value->fullname; ?></a></td>
                                         <td class="text-center" style="width:10%"><?php echo $value->gender? 'Male':'Female'; ?></td>
                                         <td class="text-center" style="width:15%"><?php echo $value->email; ?></td>
                                         <td class="text-center" style="width:15%"><?php echo $value->phone_number;?></td>

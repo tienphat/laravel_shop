@@ -45,18 +45,19 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <table id="datatable-buttons" class="table table-striped table-bordered table-responsive bulk_action">
+                        <table id="datatable-buttons" class="table table-striped jambo_table table-bordered table-responsive bulk_action">
                             <thead>
                                 <tr>
-                                    <th class="text-center " style="width:5%" >
+                                    <th class="text-center" style="width:5%" >
                                         <input type="checkbox" id="check-all" class="flat" name="table_records">
                                     </th>
                                     <th class="text-center" style="width:5%">STT</th>
-                                    <th class="text-center" style="width:25%">Tên sản phẩm</th>
+                                    <th class="text-center" style="width:10%">Hình ảnh</th>
+                                    <th class="text-center" style="width:20%">Tên sản phẩm</th>
                                     <th class="text-center" style="width:15%">Màu</th>
                                     <th class="text-center" style="width:15%">Size</th>
                                     <th class="text-center" style="width:10%">Số lượng</th>
-                                    <th class="text-center" style="width:15%">Giá</th>
+                                    <th class="text-center" style="width:10%">Giá (VNĐ)</th>
                                     <th class="text-center" style="width:10%">Giảm giá</th>
                                 </tr>
                             </thead>
@@ -68,13 +69,17 @@
                                             <input type="checkbox" class="flat checkbox" name="table_records">
                                         </td>
                                         <td class="text-center" style="width:5%"><?php echo (int) ($key + 1) ?></td>
-                                        <td class="text-center" style="width:25%">
+                                        <td class="text-center" style="width:10%;">
+                                            <img src="{{url('/')}}/public/images/uploads/products/<?php echo $value->product_images ?>" alt="<?php echo $value->product_name; ?>" width="50" height="50">
+                                        </td>
+                                        <input type="hidden" value="<?php echo $value->product_name; ?>">
+                                        <td class="text-center" style="width:20%">
                                             <a href="{{url('admin/products')}}/<?php echo $value->product_id; ?>"><?php echo $value->product_name; ?></a>
                                         </td>
                                         <td class="text-center" style="width:15%"><?php echo $value->product_color; ?></td>
                                         <td class="text-center" style="width:15%"><?php echo (int) $value->product_size; ?></td>
                                         <td class="text-center" style="width:10%"><?php echo $value->product_quantity; ?></td>
-                                        <td class="text-center" style="width:15%"><?php echo $value->product_price; ?></td>
+                                        <td class="text-center" style="width:10%"><?php echo number_format($value->product_price, 0, '.', '.'); ?></td>
                                         <td class="text-center" style="width:10%"><?php echo (int) ($value->product_discount * 100); ?> %</td>
                                     </tr>
                                 <?php endforeach; ?>
