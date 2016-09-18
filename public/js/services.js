@@ -42,18 +42,18 @@ sv.data.getData = function (url, data, afuntion, async) {
 }
 
 //-------------------------------- FUNCTION -------------------------------------
-/**
- * get list product
- * @param {type} afunction
- * @param {type} async
- * @returns {undefined}
- */
-
 sv.data.getAllProducts = function (afunction, async){
     var data = {};
     if(typeof async == 'undefined')
         async = true;
     sv.data.getData(sv.url.getService('getAllProducts'), data, afunction, async);
+}
+
+sv.data.registerUser = function (data, afunction, async){
+    var data = data;
+    if(typeof async == 'undefined')
+        async = true;
+    sv.data.getData(sv.url.getService('registerUser'), data, afunction, async);
 }
 
 sv.data.menu = function (afunction, async) {

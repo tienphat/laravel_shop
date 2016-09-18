@@ -14,5 +14,7 @@ myApp.controller('content_users', function ($scope, $apply, $timeout, $sce) {
 $(document).on("click", ".btnAddNewUser", function(){
     var data = {};
     data = $('#frmAddUser').serialize();
-    console.log(data);
+    sv.data.registerUser(data, function(response){
+        console.log(response);
+    });
 });

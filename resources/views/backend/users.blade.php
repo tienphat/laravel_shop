@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-sm-2 col-sm-offset-8" style="padding: 0px;">
                             <button class="btn btn-success form-control btnAddNew" data-toggle="modal" data-target="#addNewModal">
-                                + Add User
+                                <i class="fa fa-user-plus"></i> Add User
                             </button>
                         </div>
                         <div class="clearfix"></div>
@@ -70,14 +70,23 @@
                                                         </div>
                                                     </div>
                                                     <div class="item form-group">
-                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Full Name <span class="required">*</span>
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fullname">Full Name <span class="required">*</span>
                                                         </label>
                                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                                             <input id="fullname" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="fullname" required="required" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="item form-group">
-                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Password <span class="required">*</span>
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthdate">Birth Date <span class="required">*</span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input type="text" class="form-control has-feedback-left" id="birthdate" placeholder="Day/Month/Year" name="birthdate">
+                                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                                            <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password <span class="required">*</span>
                                                         </label>
                                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                                             <input id="password" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="password" required="required" type="password">

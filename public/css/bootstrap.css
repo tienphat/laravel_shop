@@ -5334,6 +5334,9 @@ a.list-group-item-success,
 button.list-group-item-success {
   color: #3c763d;
 }
+button.btn-success {
+    border: 0px;
+}
 a.list-group-item-success .list-group-item-heading,
 button.list-group-item-success .list-group-item-heading {
   color: inherit;
