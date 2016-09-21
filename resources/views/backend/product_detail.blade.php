@@ -1,5 +1,7 @@
-<?php
+<?php 
+    echo "<pre>";
     print_r($productInfo);
+    echo "</pre>";
 ?>
 @extends('backend.layout.master')
 

@@ -60,7 +60,6 @@
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-sm-12">
-
                                                     <input type="hidden" name="_token" value="{{ csrf_token()}}">
                                                     <div class="item form-group">
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Username <span class="required">*</span>
@@ -123,19 +122,12 @@
                                                             <input type="text" id="number" name="address" required="required" class="form-control col-md-7 col-xs-12">
                                                         </div>
                                                     </div>
-                                                    <div class="item form-group">
-                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Website URL
-                                                        </label>
-                                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                                            <input type="url" id="website" name="website" class="form-control col-md-7 col-xs-12">
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-success btnAddNewUser" ng-click="btnAddNewUser()">Submit</button>
+                                            <button type="button" class="btn btn-success btnAddNewUser">Add new</button>
                                         </div>
                                     </div>
                                 </form>

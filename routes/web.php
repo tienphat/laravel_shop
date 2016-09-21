@@ -22,6 +22,7 @@ Route::get('admin/users', 'Admin\UsersController@index');
 Route::get('admin/customers', 'Admin\CustomersController@index');
 Route::get('admin/profile', 'Admin\UsersController@profile');
 Route::post('admin/updateProfile', 'Admin\UsersController@updateProfile');
+Route::post('admin/addUser', 'Admin\UsersController@addUser');
 //---------Frontend--------
 Route::get('/', 'HomeController@index');
 

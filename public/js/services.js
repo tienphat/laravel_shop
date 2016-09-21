@@ -53,7 +53,7 @@ sv.data.registerUser = function (data, afunction, async){
     var data = data;
     if(typeof async == 'undefined')
         async = true;
-    sv.data.getData(sv.url.getService('registerUser'), data, afunction, async);
+    sv.data.getData(sv.url.getService('addUser'), data, afunction, async);
 }
 
 sv.data.menu = function (afunction, async) {

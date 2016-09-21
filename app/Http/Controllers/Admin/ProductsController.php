@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 class ProductsController extends Controller
 {
@@ -26,7 +27,7 @@ class ProductsController extends Controller
     public function detailProduct($id){
         $data['productInfo'] = DB::table('products')
                 ->where('products.product_id','=', $id )
-                ->get();
+                ->get()->toArray();
         return view('backend.product_detail')->with($data);
     }
 
