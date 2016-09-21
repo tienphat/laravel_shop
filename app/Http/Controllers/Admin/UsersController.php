@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -39,8 +38,6 @@ class UsersController extends Controller {
         return view('backend.profile')->with($data);
     }
 
-    public function show() {
-        
-    }
+   
 
 }
