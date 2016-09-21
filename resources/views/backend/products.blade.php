@@ -1,9 +1,5 @@
 @extends('backend.layout.master')
 
-@section('css')
-<link rel="stylesheet" href="{{asset('public/backend/css/products.css')}}" />
-@endsection
-
 @section('content')
 <!-- page content -->
 <div class="right_col" role="main" ng-controller="products_page">

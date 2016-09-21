@@ -6,7 +6,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Users Manage</h3>
+                <h3>Orders</h3>
             </div>
 
             <div class="title_right">
@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-sm-2 pull-right" style="padding: 0px;">
                             <button class="btn btn-success form-control btnAddNew" data-toggle="modal" data-target="#addNewModal">
-                                <i class="fa fa-user-plus"></i> Add User
+                                <i class="fa fa-user-plus"></i> Add Order
                             </button>
                         </div>
                         <div class="clearfix"></div>
@@ -51,7 +51,7 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
-                                            <h4 class="modal-title" id="myModalLabel">Add User</h4>
+                                            <h4 class="modal-title" id="myModalLabel">Add Order</h4>
                                         </div>
                                         <div class="modal-body">
                                             <div class="row">

@@ -25,6 +25,7 @@
 
         <!-- Custom Theme Style -->
         <link href="{{asset('public/build/css/custom.min.css')}}" rel="stylesheet">
+        <link href="{{asset('public/backend/css/style.css')}}" rel="stylesheet">
 
         @yield('css')
     </head>
