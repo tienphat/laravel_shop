@@ -2,45 +2,47 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Hash;
+use Carbon;
 
-class ApiController extends Controller
-{
+class ApiController extends Controller {
 
-    public function __construct()
-    {
+    public function __construct() {
         header('Content-Type: application/json');
     }
 
-    public function index($method)
-    {
+    public function index($method) {
         return $this->$method();
     }
 
-    public function getAllProducts()
-    {
+    public function getAllProducts() {
         $result = DB::table('products')->get();
 
         return $result;
     }
 
-    public function getDetailProduct($id)
-    {
+    public function getAllUsers() {
+        $result = DB::table('users')->get();
+
+        return $result;
+    }
+
+    public function getDetailProduct($id) {
         $result = DB::table('products')
                 ->where('product_id', '=', $id)
                 ->get();
         return $result;
     }
 
-    public function saveProduct(Request $request)
-    {
+    public function saveProduct(Illuminate\Http\Request $request) {
         return 'Lưu thông tin sản phẩm';
     }
 
-    public function updateProduct($id)
-    {
+    public function updateProduct($id) {
         $result = DB::table('products')
                 ->update(['product_name' => 1,
                     'product_alias' => 1,
@@ -60,40 +62,50 @@ class ApiController extends Controller
         return $result;
     }
 
-    public function deleteProduct($id)
-    {
+    public function deleteProduct($id) {
         return 'Xóa sản phẩm';
     }
-     public function addUser(Request $request)
-    {
-        $validator = $this->addValidation($request);
 
-        if ($validator->passes())
-        {
-            return[
-                'email' => Request::input('email'),
-                'password' => Request::input('password'),
-                'type' => 1
-            ];
+    public function addUser() {
+        $name = Request::input('name') ? Request::input('name') : '';
+        $fullname = Request::input('fullname') ? Request::input('fullname') : '';
+        $birth_date = Request::input('birthdate') ? Request::input('birthdate') : '';
+        $address = Request::input('address') ? Request::input('address') : '';
+        $gender = Request::input('gender') ? Request::input('gender') : '';
+        $phone_number = Request::input('phone_number') ? Request::input('phone_number') : '';
+        $email = Request::input('email') ? Request::input('email') : '';
+        $address = Request::input('address') ? Request::input('address') : '';
+        $password = Request::input('password') ? Request::input('password') : '';
+        $image = Request::input('image') ? Request::input('image') : '';
 
-            return true;
+        $result = DB::table('users')
+                ->insert([
+            'pid_user' => '2',
+            'name' => $name,
+            'fullname' => $fullname,
+            'birth_date' => Carbon\Carbon::createFromFormat('d/m/Y', $birth_date),
+            'address' => $address,
+            'gender' => $gender,
+            'phone_number' => $phone_number,
+            'email' => $email,
+            'address' => $address,
+            'password' => Hash::make($password),
+            'image' => $image,
+            'remember_token' => 'NO',
+            'updated_at' => date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'status' => 1,
+            'trash' => 0,
+        ]);
+
+        if ($result) {
+            $stt['status'] = 'success';
+        } else {
+            $stt['status'] = 'fail';
         }
-        else
-        {
-            $message = 'Add new fail!!';
-            return redirect()->back()->withErrors(array('msg' => $message));
-        }
+        return json_encode($stt);
     }
 
-    protected function addValidation($request)
-    {
-        $rules = array(
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        );
-        $this->validate($request, $rules);
-    }
     
 
 }

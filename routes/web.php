@@ -1,29 +1,35 @@
 <?php
 
 //---------Backend--------
-Route::get('/admin', function(){
-    if(Auth::check()){
+Route::get('/admin', function() {
+    if (Auth::check()) {
         return redirect('/dashboard');
-    }
-    else{
+    } else {
         return redirect('login');
     }
 });
 Route::get('/dashboard', 'Admin\AdminController@index');
 //----------Login--------
 Route::get('login', 'Auth\LoginController@getLogin');
-Route::post('admin/postLogin', 'Auth\LoginController@postLogin');
-Route::get('admin/logout', 'Auth\LoginController@logout');
-Route::get('admin/forgotPassword', 'Auth\LoginController@forgotPassword');
+Route::group(array('prefix' => 'admin/'), function() {
+    Route::post('postLogin', 'Auth\LoginController@postLogin');
+    Route::get('logout', 'Auth\LoginController@logout');
+    Route::get('forgotPassword', 'Auth\LoginController@forgotPassword');
+});
 //----------Backend continue
-Route::get('admin/products', 'Admin\ProductsController@index');
-Route::get('admin/products/{id}', 'Admin\ProductsController@detailProduct');
-Route::get('admin/users', 'Admin\UsersController@index');
-Route::get('admin/customers', 'Admin\CustomersController@index');
-Route::get('admin/profile', 'Admin\UsersController@profile');
-Route::get('admin/orders', 'Admin\UsersController@orders');
-Route::post('admin/updateProfile', 'Admin\UsersController@updateProfile');
-Route::post('admin/addUser', 'Admin\UsersController@addUser');
+Route::group(array('prefix' => 'admin/'), function() {
+    Route::get('products', 'Admin\ProductsController@index');
+    Route::get('products/{id}', 'Admin\ProductsController@detailProduct');
+    Route::get('customers', 'Admin\CustomersController@index');
+    Route::get('orders', 'Admin\UsersController@orders');
+    
+    //Users
+    Route::get('users', 'Admin\UsersController@index');
+    Route::get('profile', 'Admin\UsersController@profile');
+    Route::post('updateProfile', 'Admin\UsersController@updateProfile');
+    Route::post('addUser', 'Admin\UsersController@addUser');
+    Route::post('changeStatusUser/{id}', 'Admin\UsersController@changeStatusUser');
+});
 //---------Frontend--------
 Route::get('/', 'HomeController@index');
 
@@ -37,17 +43,14 @@ Route::group(array('prefix' => 'dich-vu'), function() {
     Route::get('/{any}', 'ServicesController@show');
 });
 
-Route::get('/dich-vu', 'ServicesController@index');
-Route::get('/dich-vu/{num}', 'ServicesController@index');
-Route::get('/dich-vu/{any}', 'ServicesController@show');
-
-Route::get('/tin-tuc', 'NewsController@index');
-Route::get('/tin-tuc/{num}', 'NewsController@index');
-Route::get('/tin-tuc/{any}', 'NewsController@show');
-
-Route::get('/san-pham', 'ProductsController@index');
-Route::get('/san-pham/{num}', 'ProductsController@category');
-Route::get('/san-pham/{any}', 'ProductsController@category');
-Route::get('/san-pham/{any}/{num}', 'ProductsController@category');
-//
-//Route::get();
+Route::group(array('prefix' => 'tin-tuc'), function() {
+    Route::get('/', 'NewsController@index');
+    Route::get('/{num}', 'NewsController@index');
+    Route::get('/{any}', 'NewsController@show');
+});
+Route::group(array('prefix' => 'san-pham'), function() {
+    Route::get('/', 'ProductsController@index');
+    Route::get('/{num}', 'ProductsController@category');
+    Route::get('/any}', 'ProductsController@category');
+    Route::get('/{any}/{num}', 'ProductsController@category');
+});

@@ -32,7 +32,6 @@
                             <select name="datatable-buttons_length" aria-controls="datatable-buttons" class="form-control input-sm" style="font-size: 14px;">
                                 <option value="10" selected>Actions</option>
                                 <option value="25">Delete</option>
-                                <option value="50">Change Status</option>
                                 <option value="50">Update Attribute</option>
                             </select>
                         </div>
@@ -75,7 +74,7 @@
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthdate">Birth Date <span class="required">*</span>
                                                         </label>
                                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                                            <input type="text" class="form-control has-feedback-left" id="birthdate" placeholder="Day/Month/Year" name="birthdate">
+                                                            <input type="text" class="form-control has-feedback-left" id="birthdate" data-inputmask="'mask': '99/99/9999'" name="birthdate">
                                                             <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                                             <span id="inputSuccess2Status" class="sr-only">(success)</span>
                                                         </div>
@@ -92,8 +91,8 @@
                                                         </label>
                                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                                             <h5>
-                                                                Male: <input type="radio" class="flat" name="gender" id="genderM" value="M" checked="" required /> 
-                                                                Female: <input type="radio" class="flat" name="gender" id="genderF" value="F" />
+                                                                Male: <input type="radio" class="flat" name="gender" id="genderM" value="1" checked="" required /> 
+                                                                Female: <input type="radio" class="flat" name="gender" id="genderF" value="0" />
                                                             </h5>
                                                         </div>
                                                     </div>
@@ -160,7 +159,7 @@
                                         <td class="text-center"><?php echo $value->email; ?></td>
                                         <td class="text-center"><?php echo $value->phone_number; ?></td>
                                         <td class="text-center">
-                                            <?php echo $value->status ? '<button type="button" class="btn btn-round btn-success btn-xs">Active</button>' : '<button type="button" class="btn btn-round btn-danger">Not Active</button>'; ?>
+                                            <?php echo $value->status ? '<button type="button" class="btn btn-round btn-success btn-xs btnChangeStatus" onclick="btnChangeStatus('.$value->id.')" data-id='.$value->id.'>Active</button>' : '<button type="button" class="btn btn-round btn-danger btn-xs btnChangeStatus'.$value->id.'" data-id='.$value->id.'>Not Active</button>'; ?>
                                         </td>
                                         <td class="text-center">
                                             <?php
@@ -210,7 +209,7 @@
 <script src="{{asset('public/libs/jszip/dist/jszip.min.js')}}"></script>
 <script src="{{asset('public/libs/pdfmake/build/pdfmake.min.js')}}"></script>
 <script src="{{asset('public/libs/pdfmake/build/vfs_fonts.js')}}"></script>
-
+<script src="{{asset('public/libs/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>
 <!-- Custom Theme Scripts -->
 
 <script type="text/javascript" src="{{asset('public/build/js/custom.js')}}"></script>
@@ -225,5 +224,7 @@
             {orderable: true, targets: [0]}
         ]
     });
+    
+    $(":input").inputmask();
 </script>
 @endsection

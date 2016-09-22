@@ -40,7 +40,6 @@ sv.data.getData = function (url, data, afuntion, async) {
         }
     });
 }
-
 //-------------------------------- FUNCTION -------------------------------------
 sv.data.getAllProducts = function (afunction, async){
     var data = {};
@@ -49,12 +48,20 @@ sv.data.getAllProducts = function (afunction, async){
     sv.data.getData(sv.url.getService('getAllProducts'), data, afunction, async);
 }
 
-sv.data.registerUser = function (data, afunction, async){
+sv.data.addUser = function (data, afunction, async){
     var data = data;
     if(typeof async == 'undefined')
         async = true;
     sv.data.getData(sv.url.getService('addUser'), data, afunction, async);
-}
+};
+sv.data.changeStatusUser = function (url, _token, afunction, async){
+    var data = {
+        _token: _token
+    };
+    if(typeof async == 'undefined')
+        async = true;
+    sv.data.getData(url, data, afunction, async);
+};
 
 sv.data.menu = function (afunction, async) {
     var data = {};

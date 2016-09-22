@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 
 /*
   |--------------------------------------------------------------------------
@@ -13,11 +13,10 @@ use Illuminate\Http\Request;
   |
  */
 
-Route::get('/user', function (Request $request)
-{
+Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
+Route::get('data/{method}', ['uses' => 'Api\ApiController@index']);
 Route::post('data/{method}', ['uses' => 'Api\ApiController@index']);
-
 

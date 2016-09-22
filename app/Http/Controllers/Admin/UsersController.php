@@ -38,6 +38,25 @@ class UsersController extends Controller {
         return view('backend.profile')->with($data);
     }
 
-   
+    public function changeStatusUser($id) {
+
+        $tmp = DB::table('users')->where('id', $id)->get()->toArray();
+        
+        
+        if ($tmp[0]->status) {
+            $result = DB::table('users')->where('id', $id)->update(['status' => 0]);
+            $stt['code'] = 0;
+        } else {
+            $result = DB::table('users')->where('id', $id)->update(['status' => 1]);
+            $stt['code'] = 1;
+        }
+
+        if ($result) {
+            $stt['status'] = 'success';
+        } else {
+            $stt['status'] = 'fail';
+        }
+        return json_encode($stt);
+    }
 
 }
