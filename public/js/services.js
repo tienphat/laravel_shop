@@ -20,9 +20,9 @@ sv.url.getCaptcha = function (method)
 };
 
 //--------------------------------AJAX-------------------------------------
-sv.data.getData = function (url, data, afuntion, async) {
+sv.data.getData = function (url,  data, afuntion, async) {
     $.ajax({
-        method: "POST",
+        method: 'POST',
         url: url,
         data: data,
         async: async,
@@ -54,6 +54,18 @@ sv.data.addUser = function (data, afunction, async){
         async = true;
     sv.data.getData(sv.url.getService('addUser'), data, afunction, async);
 };
+sv.data.getUserInfo = function (id, afunction, async){
+    var data = {};
+    if(typeof async == 'undefined')
+        async = true;
+    sv.data.getData(sv.url.getService('getUserInfo') + '/' + id, data, afunction, async);
+};
+sv.data.updateUserInfo = function (id, data, afunction, async){
+    var data = data;
+    if(typeof async == 'undefined')
+        async = true;
+    sv.data.getData(sv.url.getService('updateUserInfo') + '/' + id, data, afunction, async);
+};
 sv.data.changeStatusUser = function (url, _token, afunction, async){
     var data = {
         _token: _token
@@ -62,7 +74,14 @@ sv.data.changeStatusUser = function (url, _token, afunction, async){
         async = true;
     sv.data.getData(url, data, afunction, async);
 };
-
+sv.data.deleteUser = function (url, _token, afunction, async){
+    var data = {
+        _token: _token
+    };
+    if(typeof async == 'undefined')
+        async = true;
+    sv.data.getData(url, data, afunction, async);
+};
 sv.data.menu = function (afunction, async) {
     var data = {};
     if (typeof async == 'undefined')
