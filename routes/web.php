@@ -29,6 +29,7 @@ Route::group(array('prefix' => 'admin/'), function() {
     Route::post('updateProfile', 'Admin\UsersController@updateProfile');
     Route::post('addUser', 'Admin\UsersController@addUser');
     Route::post('changeStatusUser/{id}', 'Admin\UsersController@changeStatusUser');
+    Route::post('deleteUsers/{id}', 'Admin\UsersController@deleteUsers');
 });
 //---------Frontend--------
 Route::get('/', 'HomeController@index');
