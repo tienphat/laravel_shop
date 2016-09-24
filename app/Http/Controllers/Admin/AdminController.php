@@ -15,12 +15,10 @@ class AdminController extends Controller
     }
     public function index() {
         $data[] = [];
-        $data['user_id'] = Auth::id();
-        $data['userInfo'] = DB::table('users')
+        $data['countUsers'] = DB::table('users')
                 ->join('users_permission', 'users.pid_user', '=', 'users_permission.pid_user')
-                ->where('users.id', '=', $data['user_id'])
-                ->get()
-                ->toArray();
+                ->where('users_permission.pid_user', '=', '3')
+                ->count();
         return view('backend.index')->with($data);
     }
     public function show(){

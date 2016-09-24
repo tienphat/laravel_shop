@@ -47,7 +47,7 @@ sv.data.getAllProducts = function (afunction, async){
         async = true;
     sv.data.getData(sv.url.getService('getAllProducts'), data, afunction, async);
 }
-
+//----------User
 sv.data.addUser = function (data, afunction, async){
     var data = data;
     if(typeof async == 'undefined')
@@ -82,6 +82,44 @@ sv.data.deleteUser = function (url, _token, afunction, async){
         async = true;
     sv.data.getData(url, data, afunction, async);
 };
+
+//----------Customer
+sv.data.addCustomer = function (data, afunction, async){
+    var data = data;
+    if(typeof async == 'undefined')
+        async = true;
+    sv.data.getData(sv.url.getService('addCustomer'), data, afunction, async);
+};
+sv.data.getCustomerInfo = function (id, afunction, async){
+    var data = {};
+    if(typeof async == 'undefined')
+        async = true;
+    sv.data.getData(sv.url.getService('getCustomerInfo') + '/' + id, data, afunction, async);
+};
+sv.data.updateCustomerInfo = function (id, data, afunction, async){
+    var data = data;
+    if(typeof async == 'undefined')
+        async = true;
+    sv.data.getData(sv.url.getService('updateCustomerInfo') + '/' + id, data, afunction, async);
+};
+sv.data.changeStatusCustomer = function (url, _token, afunction, async){
+    var data = {
+        _token: _token
+    };
+    if(typeof async == 'undefined')
+        async = true;
+    sv.data.getData(url, data, afunction, async);
+};
+sv.data.deleteCustomer = function (url, _token, afunction, async){
+    var data = {
+        _token: _token
+    };
+    if(typeof async == 'undefined')
+        async = true;
+    sv.data.getData(url, data, afunction, async);
+};
+
+//---------------Menu
 sv.data.menu = function (afunction, async) {
     var data = {};
     if (typeof async == 'undefined')

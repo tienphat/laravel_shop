@@ -6,7 +6,7 @@
  * @package  Laravel
  * @author   Taylor Otwell <taylor@laravel.com>
  */
-
+require_once('config.php');
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader

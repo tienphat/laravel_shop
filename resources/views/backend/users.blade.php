@@ -29,7 +29,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <div class="col-sm-2" style="padding: 0px;">
-                            <button class="btn btn-danger form-control btnDelete">
+                            <button class="btn btn-danger form-control btnDelete" ng-click="actionDelete()">
                                 <i class="fa fa-trash"></i> Delete
                             </button>
                         </div>
@@ -136,7 +136,7 @@
                                     </th>
                                     <th class="text-center">STT</th>
                                     <th class="text-center">Fullname</th>
-                                    <th class="text-center">Gender</th>
+                                    <th class="text-center">Birth Date</th>
                                     <th class="text-center" >Email</th>
                                     <th class="text-center">Phone number</th>
                                     <th class="text-center">Status</th>
@@ -152,8 +152,14 @@
                                             <input type="checkbox" data-id="<?php echo $value->id; ?>" class="flat checkbox" name="table_records">
                                         </td>
                                         <td class="text-center"><?php echo (int) ($key + 1) ?></td>
-                                        <td class="text-center"><a href="javascript:void(0)" ng-click="showInfoUserModal('<?php echo $value->id; ?>')" ><?php echo $value->fullname; ?></a></td>
-                                        <td class="text-center"><?php echo $value->gender ? 'Male' : 'Female'; ?></td>
+                                        <td class="text-center"><a href="javascript:void(0)" style="font-weight: bold;" ng-click="showInfoUserModal('<?php echo $value->id; ?>')" ><?php echo $value->fullname; ?></a></td>
+                                        <td class="text-center">
+                                            <?php 
+                                                $date = date_create($value->birth_date);
+                                                echo date_format($date, 'd-m-Y');
+                                            ?>
+                                        </td>
+                                        </td>
                                         <td class="text-center"><?php echo $value->email; ?></td>
                                         <td class="text-center"><?php echo $value->phone_number; ?></td>
                                         <td class="text-center">
@@ -165,7 +171,7 @@
                                             ?>
                                         </td>
                                         <td class="text-center">
-                                            <button class="btn btn-danger btn-xs btnDelete"><i class="fa fa-trash"></i> Delete</button>
+                                            <button class="btn btn-danger btn-xs" ng-click="actionDelete('<?php echo $value->id; ?>')"><i class="fa fa-trash"></i> Delete</button>
                                         </td>
 
                                     </tr>
@@ -215,7 +221,7 @@
                                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                                             <h5>
                                                                 <h5>
-                                                                    Male: <input type="radio" class="flat" name="gender" id="genderM" ng-model="userInfo.gender" value="1" checked=""/>
+                                                                    Male: <input type="radio" class="flat" name="gender" id="genderM" ng-model="userInfo.gender" value="1" />
                                                                     Female: <input type="radio" class="flat" name="gender" id="genderF" ng-model="userInfo.gender" value="0"/>
                                                                 </h5>
                                                             </h5>

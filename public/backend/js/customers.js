@@ -1,47 +1,47 @@
-myApp.controller('content_users', function ($scope, $apply, $timeout, $sce) {
+myApp.controller('customers', function ($scope, $apply, $timeout, $sce) {
     $scope.data = {};
-    $scope.listProducts = {};
-    $scope.btnAddNewUser;
-    $scope.userInfo = {};
-    var userInfo = {};
-    $scope.showInfoUserModal = function (id) {
-        sv.data.getUserInfo(id, function (response) {
+    $scope.listCustomer = {};
+    $scope.btnAddNewCustomer;
+    $scope.customerInfo = {};
+    $scope.showInfoCustomerModal = function (id) {
+        sv.data.getCustomerInfo(id, function (response) {
             $apply(function () {
-                $scope.userInfo = response[0];
-                $('#userInfoModal').modal('show');
+                $scope.customerInfo = response[0];
+                $('#customerInfoModal').modal('show');
             });
 
         });
     };
-    $scope.btnAddNewUser = function () {
+    $scope.btnAddNewCustomer = function () {
         var data = {};
-        data = $('#frmAddUser').serialize();
-        sv.data.addUser(data, function (response) {
-            if (response.status == "fail") {
-                alert('Thao tác thất bại, vui lòng kiểm tra lại!');
-            } else {
+        data = $('#frmAddCustomer').serialize();
+        sv.data.addCustomer(data, function (response) {
+            if (response.status == "success") {
                 alert('Thao tác thành công!');
                 $('#addNewModal').modal('hide');
                 window.location.reload();
+                
+            } else {
+                alert('Thao tác thất bại, vui lòng kiểm tra lại!');
             }
         });
     };
-    $scope.updateUserInfo = function () {
-        var id = $('#frmUpdateUser').find('button.btnUpdateUser').attr('data-id');
-        var data = $('#frmUpdateUser').serialize();
-        sv.data.updateUserInfo(id, data, function (response) {
-            if (response.status == "success") {
-                alert("Thao tác thành công!");
-                $('#userInfoModal').modal('hide');
-                window.location.reload();
-            } else {
-                alert('Cập nhật thất bại!');
-            }
+    $scope.updateCustomerInfo = function(){
+        var id = $('#frmUpdateCustomer').find('button.btnUpdateCustomer').attr('data-id');
+        var data = $('#frmUpdateCustomer').serialize(); 
+        sv.data.updateCustomerInfo(id, data, function(response){
+           if (response.status == "success") {
+               alert("Thao tác thành công!");
+               $('#customerInfoModal').modal('hide');
+               window.location.reload();
+           }else{
+               alert('Cập nhật thất bại!');
+           }
         });
     };
     $scope.actionDelete = function (id) {
         var _token = $('input[name="_token"]').val();
-        var url = SITE_ROOT + 'admin/deleteUsers/';
+        var url = SITE_ROOT + 'admin/deleteCustomers/';
         if (typeof id === 'undefined') {
             var arrid = [];
             $('#datatable-buttons').find('tbody input[type=checkbox]:checked:enabled').each(function () {
@@ -49,15 +49,15 @@ myApp.controller('content_users', function ($scope, $apply, $timeout, $sce) {
             });
             $.each(arrid, function (key, value) {
                 url = SITE_ROOT + 'admin/deleteUsers/' + value;
-                deleteUsers(url, _token);
+                deleteCustomers(url, _token);
             });
         }else {
             url += id;
-            deleteUsers(url, _token);
+            deleteCustomers(url, _token);
         } 
     };
-    function deleteUsers(url, _token) {
-        sv.data.deleteUser(url, _token, function (response) {
+    function deleteCustomers(url, _token) {
+        sv.data.deleteCustomer(url, _token, function (response) {
             if (response.status == 'success') {
                 alert("Thao tác thành công!");
                 window.location.reload();
@@ -67,13 +67,12 @@ myApp.controller('content_users', function ($scope, $apply, $timeout, $sce) {
 
         });
     }
-    ;
 });
 function btnChangeStatus(id) {
     var data = $('input[name="_token"]').val();
-    var url = SITE_ROOT + 'admin/changeStatusUser/' + id;
+    var url = SITE_ROOT + 'admin/changeStatusCustomer/' + id;
 
-    sv.data.changeStatusUser(url, data, function (response) {
+    sv.data.changeStatusCustomer(url, data, function (response) {
         if (response.status == "success") {
             if (response.code == 1) {
                 var html = '';

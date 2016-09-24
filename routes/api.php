@@ -24,11 +24,19 @@ Route::get('/user', function (Request $request)
 Route::post('data/{method}', ['uses' => 'Api\ApiController@index']);
 
 Route::group(array('prefix'=>'data/'), function(){
-//    User
+//-----------User
     Route::get('getAllUsers', 'Api\ApiController@getAllUsers');
     Route::post('getUserInfo/{id}', 'Api\ApiController@getUserInfo');
     Route::post('updateUserInfo/{id}', 'Api\ApiController@updateUserInfo');
-//    Product
+    
+//-----------Customer
+//    Route::post('addCustomer', 'Api\ApiController@addCustomer');
+    Route::get('getAllCustomer', 'Api\ApiController@getAllCustomer');
+    Route::post('getCustomerInfo/{id}', 'Api\ApiController@getCustomerInfo');
+    Route::post('updateCustomerInfo/{id}', 'Api\ApiController@updateCustomerInfo');
+    
+    
+//-----------Product
     Route::get('getAllProducts/{id}', 'Api\ApiController@getAllProducts');
     Route::get('getDetailProduct/{id}', 'Api\ApiController@getDetailProduct');
 });

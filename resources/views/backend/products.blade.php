@@ -6,7 +6,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Danh mục sản phẩm</h3>
+                <h3>Products</h3>
             </div>
 
             <div class="title_right">
@@ -28,7 +28,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Sản phẩm</h2>
+                        <h2>Products</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -48,13 +48,13 @@
                                         <input type="checkbox" id="check-all" class="flat" name="table_records">
                                     </th>
                                     <th class="text-center" style="width:5%">STT</th>
-                                    <th class="text-center" style="width:10%">Hình ảnh</th>
-                                    <th class="text-center" style="width:20%">Tên sản phẩm</th>
-                                    <th class="text-center" style="width:15%">Màu</th>
+                                    <th class="text-center" style="width:10%">Image</th>
+                                    <th class="text-center" style="width:20%">Product Name</th>
+                                    <th class="text-center" style="width:15%">Color</th>
                                     <th class="text-center" style="width:15%">Size</th>
-                                    <th class="text-center" style="width:10%">Số lượng</th>
-                                    <th class="text-center" style="width:10%">Giá (VNĐ)</th>
-                                    <th class="text-center" style="width:10%">Giảm giá</th>
+                                    <th class="text-center" style="width:10%">Quantity</th>
+                                    <th class="text-center" style="width:10%">Price (VNĐ)</th>
+                                    <th class="text-center" style="width:10%">Sales Off</th>
                                 </tr>
                             </thead>
 

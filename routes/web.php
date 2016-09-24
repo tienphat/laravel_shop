@@ -27,9 +27,14 @@ Route::group(array('prefix' => 'admin/'), function() {
     Route::get('users', 'Admin\UsersController@index');
     Route::get('profile', 'Admin\UsersController@profile');
     Route::post('updateProfile', 'Admin\UsersController@updateProfile');
-    Route::post('addUser', 'Admin\UsersController@addUser');
+//    Route::post('addUser', 'Admin\UsersController@addUser');
     Route::post('changeStatusUser/{id}', 'Admin\UsersController@changeStatusUser');
     Route::post('deleteUsers/{id}', 'Admin\UsersController@deleteUsers');
+//    Customers
+//    Route::post('addCustomer', 'Admin\CustomersController@addCustomer');
+    Route::post('changeStatusCustomer/{id}', 'Admin\CustomersController@changeStatusCustomer');
+    Route::post('deleteCustomers/{id}', 'Admin\CustomersController@deleteCustomers');
+    
 });
 //---------Frontend--------
 Route::get('/', 'HomeController@index');
