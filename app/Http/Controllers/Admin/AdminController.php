@@ -10,18 +10,20 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function __construct() {
+
+    public function __construct()
+    {
         
     }
-    public function index() {
-        $data[] = [];
+
+    public function index()
+    {
+        $data[]             = [];
         $data['countUsers'] = DB::table('users')
-                ->join('users_permission', 'users.pid_user', '=', 'users_permission.pid_user')
-                ->where('users_permission.pid_user', '=', '3')
-                ->count();
+            ->join('users_permission', 'users.pid_user', '=', 'users_permission.pid_user')
+            ->where('users_permission.pid_user', '=', '3')
+            ->count();
         return view('backend.index')->with($data);
     }
-    public function show(){
-//        return view('backend.index')->with($data);
-    }
+
 }

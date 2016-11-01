@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 
-
-class LoginController extends Controller {
+class LoginController extends Controller
+{
     /*
       |--------------------------------------------------------------------------
       | Login Controller
@@ -23,13 +23,11 @@ class LoginController extends Controller {
      */
 
 use AuthenticatesUsers;
-
     /**
      * Where to redirect users after login / registration.
      *
      * @var string
      */
-
     protected $redirectTo = '/admin';
 
     /**
@@ -37,23 +35,29 @@ use AuthenticatesUsers;
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('guest', ['except' => 'logout']);
     }
 
-    public function getLogin() {
+    public function getLogin()
+    {
         return view('login');
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         $request->session()->flush();
         return redirect('login');
     }
-    public function forgotPassword(Request $request) {
+
+    public function forgotPassword(Request $request)
+    {
         return 'Quên mật khẩu';
     }
 
-    public function postLogin(Request $request, Validator $validator) {
+    public function postLogin(Request $request, Validator $validator)
+    {
         if (Auth::attempt(['name' => $request->input('name'), 'password' => $request->input('password')])) {
             // Authentication passed...
             return redirect('admin');
@@ -62,5 +66,4 @@ use AuthenticatesUsers;
             return redirect('login')->withInput($request->only('email', 'remember'))->with('status', $stt);
         }
     }
-
 }

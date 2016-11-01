@@ -1,28 +1,27 @@
 <?php
-
 //---------Backend--------
-Route::get('/admin', function() {
-    if (Auth::check()) {
-        return redirect('/dashboard');
-    } else {
-        return redirect('login');
-    }
+Route::get('/admin', function(){
+    return redirect('/dashboard');
 });
-Route::get('/dashboard', 'Admin\AdminController@index');
+Route::get('/dashboard', 'Admin\AdminController@index')->middleware('auth');
+
 //----------Login--------
 Route::get('login', 'Auth\LoginController@getLogin');
-Route::group(array('prefix' => 'admin/'), function() {
+Route::group(array('prefix' => 'admin/'),
+    function() {
     Route::post('postLogin', 'Auth\LoginController@postLogin');
     Route::get('logout', 'Auth\LoginController@logout');
     Route::get('forgotPassword', 'Auth\LoginController@forgotPassword');
 });
+
 //----------Backend continue
-Route::group(array('prefix' => 'admin/'), function() {
+Route::group(array('prefix' => 'admin/', 'middleware' => 'auth'),
+    function() {
     Route::get('products', 'Admin\ProductsController@index');
     Route::get('products/{id}', 'Admin\ProductsController@detailProduct');
     Route::get('customers', 'Admin\CustomersController@index');
     Route::get('orders', 'Admin\UsersController@orders');
-    
+
     //Users
     Route::get('users', 'Admin\UsersController@index');
     Route::get('profile', 'Admin\UsersController@profile');
@@ -34,8 +33,9 @@ Route::group(array('prefix' => 'admin/'), function() {
 //    Route::post('addCustomer', 'Admin\CustomersController@addCustomer');
     Route::post('changeStatusCustomer/{id}', 'Admin\CustomersController@changeStatusCustomer');
     Route::post('deleteCustomers/{id}', 'Admin\CustomersController@deleteCustomers');
-    
 });
+
+
 //---------Frontend--------
 Route::get('/', 'HomeController@index');
 
@@ -43,18 +43,21 @@ Route::get('/san-pham', 'ProductsController@index');
 Route::get('/lien-he', 'ContactController@index');
 Route::get('/gioi-thieu', 'IntroductionController@index');
 
-Route::group(array('prefix' => 'dich-vu'), function() {
+Route::group(array('prefix' => 'dich-vu'),
+    function() {
     Route::get('/', 'ServicesController@index');
     Route::get('/{num}', 'ServicesController@index');
     Route::get('/{any}', 'ServicesController@show');
 });
 
-Route::group(array('prefix' => 'tin-tuc'), function() {
+Route::group(array('prefix' => 'tin-tuc'),
+    function() {
     Route::get('/', 'NewsController@index');
     Route::get('/{num}', 'NewsController@index');
     Route::get('/{any}', 'NewsController@show');
 });
-Route::group(array('prefix' => 'san-pham'), function() {
+Route::group(array('prefix' => 'san-pham'),
+    function() {
     Route::get('/', 'ProductsController@index');
     Route::get('/{num}', 'ProductsController@category');
     Route::get('/any}', 'ProductsController@category');

@@ -34,8 +34,8 @@ class ApiController extends Controller
     public function getDetailProduct($id)
     {
         $result = DB::table('products')
-                ->where('product_id', '=', $id)
-                ->get();
+            ->where('product_id', '=', $id)
+            ->get();
         return $result;
     }
 
@@ -56,24 +56,29 @@ class ApiController extends Controller
     public function updateUserInfo($id)
     {
         $pid_user = 2;
-        $param = [
+        $param    = [
             'name' => Request::input('name') ? Request::input('name') : '',
-            'fullname' => Request::input('fullname') ? Request::input('fullname') : '',
-            'birth_date' => Request::input('birthdate') ? Request::input('birthdate') : '',
+            'fullname' => Request::input('fullname') ? Request::input('fullname')
+                    : '',
+            'birth_date' => Request::input('birthdate') ? Request::input('birthdate')
+                    : '',
             'address' => Request::input('address') ? Request::input('address') : '',
             'gender' => Request::input('gender') ? Request::input('gender') : '1',
-            'phone_number' => Request::input('phone_number') ? Request::input('phone_number') : '',
+            'phone_number' => Request::input('phone_number') ? Request::input('phone_number')
+                    : '',
             'email' => Request::input('email') ? Request::input('email') : '',
             'image' => Request::input('image') ? Request::input('image') : '',
         ];
-        $oldInfo = DB::select('select password, created_at from users where id = ?', [$id]);
-        $result = DB::table('users')
-                ->where('id', $id)
-                ->update([
+        $oldInfo  = DB::select('select password, created_at from users where id = ?',
+                [$id]);
+        $result   = DB::table('users')
+            ->where('id', $id)
+            ->update([
             'pid_user' => $pid_user,
             'name' => $param['name'],
             'fullname' => $param['fullname'],
-            'birth_date' => Carbon\Carbon::createFromFormat('d/m/Y', $param['birth_date']),
+            'birth_date' => Carbon\Carbon::createFromFormat('d/m/Y',
+                $param['birth_date']),
             'address' => $param['address'],
             'gender' => $param['gender'],
             'phone_number' => $param['phone_number'],
@@ -87,12 +92,9 @@ class ApiController extends Controller
             'status' => 1,
             'trash' => 0,
         ]);
-        if ($result)
-        {
+        if ($result) {
             $stt['status'] = 'success';
-        }
-        else
-        {
+        } else {
             $stt['status'] = 'fail';
         }
         return json_encode($stt);
@@ -101,23 +103,28 @@ class ApiController extends Controller
     public function addUser()
     {
         $pid_user = 2;
-        $param = [
+        $param    = [
             'name' => Request::input('name') ? Request::input('name') : '',
-            'fullname' => Request::input('fullname') ? Request::input('fullname') : '',
-            'birth_date' => Request::input('birthdate') ? Request::input('birthdate') : '',
+            'fullname' => Request::input('fullname') ? Request::input('fullname')
+                    : '',
+            'birth_date' => Request::input('birthdate') ? Request::input('birthdate')
+                    : '',
             'address' => Request::input('address') ? Request::input('address') : '',
             'gender' => Request::input('gender') ? Request::input('gender') : '1',
-            'phone_number' => Request::input('phone_number') ? Request::input('phone_number') : '',
+            'phone_number' => Request::input('phone_number') ? Request::input('phone_number')
+                    : '',
             'email' => Request::input('email') ? Request::input('email') : '',
-            'password' => Request::input('password') ? Request::input('password') : '',
+            'password' => Request::input('password') ? Request::input('password')
+                    : '',
             'image' => Request::input('image') ? Request::input('image') : '',
         ];
-        $result = DB::table('users')
-                ->insert([
+        $result   = DB::table('users')
+            ->insert([
             'pid_user' => $pid_user,
             'name' => $param['name'],
             'fullname' => $param['fullname'],
-            'birth_date' => Carbon\Carbon::createFromFormat('d/m/Y', $param['birth_date']),
+            'birth_date' => Carbon\Carbon::createFromFormat('d/m/Y',
+                $param['birth_date']),
             'address' => $param['address'],
             'gender' => $param['gender'],
             'phone_number' => $param['phone_number'],
@@ -131,17 +138,15 @@ class ApiController extends Controller
             'status' => 1,
             'trash' => 0,
         ]);
-        if ($result)
-        {
+        if ($result) {
             $stt['status'] = 'success';
-        }
-        else
-        {
+        } else {
             $stt['status'] = 'fail';
         }
 
         return json_encode($stt);
     }
+
 //--------------Customer----------------
     public function getAllCustomers()
     {
@@ -159,24 +164,29 @@ class ApiController extends Controller
     public function updateCustomerInfo($id)
     {
         $pid_user = 3;
-        $param = [
+        $param    = [
             'name' => Request::input('name') ? Request::input('name') : '',
-            'fullname' => Request::input('fullname') ? Request::input('fullname') : '',
-            'birth_date' => Request::input('birthdate') ? Request::input('birthdate') : '',
+            'fullname' => Request::input('fullname') ? Request::input('fullname')
+                    : '',
+            'birth_date' => Request::input('birthdate') ? Request::input('birthdate')
+                    : '',
             'address' => Request::input('address') ? Request::input('address') : '',
             'gender' => Request::input('gender') ? Request::input('gender') : '1',
-            'phone_number' => Request::input('phone_number') ? Request::input('phone_number') : '',
+            'phone_number' => Request::input('phone_number') ? Request::input('phone_number')
+                    : '',
             'email' => Request::input('email') ? Request::input('email') : '',
             'image' => Request::input('image') ? Request::input('image') : '',
         ];
-        $oldInfo = DB::select('select password, created_at from users where id = ?', [$id]);
-        $result = DB::table('users')
-                ->where('id', $id)
-                ->update([
+        $oldInfo  = DB::select('select password, created_at from users where id = ?',
+                [$id]);
+        $result   = DB::table('users')
+            ->where('id', $id)
+            ->update([
             'pid_user' => $pid_user,
             'name' => $param['name'],
             'fullname' => $param['fullname'],
-            'birth_date' => Carbon\Carbon::createFromFormat('d/m/Y', $param['birth_date']),
+            'birth_date' => Carbon\Carbon::createFromFormat('d/m/Y',
+                $param['birth_date']),
             'address' => $param['address'],
             'gender' => $param['gender'],
             'phone_number' => $param['phone_number'],
@@ -190,12 +200,9 @@ class ApiController extends Controller
             'status' => 1,
             'trash' => 0,
         ]);
-        if ($result)
-        {
+        if ($result) {
             $stt['status'] = 'success';
-        }
-        else
-        {
+        } else {
             $stt['status'] = 'fail';
         }
         return json_encode($stt);
@@ -204,23 +211,28 @@ class ApiController extends Controller
     public function addCustomer()
     {
         $pid_user = 3;
-        $param = [
+        $param    = [
             'name' => Request::input('name') ? Request::input('name') : '',
-            'fullname' => Request::input('fullname') ? Request::input('fullname') : '',
-            'birth_date' => Request::input('birthdate') ? Request::input('birthdate') : '',
+            'fullname' => Request::input('fullname') ? Request::input('fullname')
+                    : '',
+            'birth_date' => Request::input('birthdate') ? Request::input('birthdate')
+                    : '',
             'address' => Request::input('address') ? Request::input('address') : '',
             'gender' => Request::input('gender') ? Request::input('gender') : '1',
-            'phone_number' => Request::input('phone_number') ? Request::input('phone_number') : '',
+            'phone_number' => Request::input('phone_number') ? Request::input('phone_number')
+                    : '',
             'email' => Request::input('email') ? Request::input('email') : '',
-            'password' => Request::input('password') ? Request::input('password') : '',
+            'password' => Request::input('password') ? Request::input('password')
+                    : '',
             'image' => Request::input('image') ? Request::input('image') : '',
         ];
-        $result = DB::table('users')
-                ->insert([
+        $result   = DB::table('users')
+            ->insert([
             'pid_user' => $pid_user,
             'name' => $param['name'],
             'fullname' => $param['fullname'],
-            'birth_date' => Carbon\Carbon::createFromFormat('d/m/Y', $param['birth_date']),
+            'birth_date' => Carbon\Carbon::createFromFormat('d/m/Y',
+                $param['birth_date']),
             'address' => $param['address'],
             'gender' => $param['gender'],
             'phone_number' => $param['phone_number'],
@@ -234,16 +246,12 @@ class ApiController extends Controller
             'status' => 1,
             'trash' => 0,
         ]);
-        if ($result)
-        {
+        if ($result) {
             $stt['status'] = 'success';
-        }
-        else
-        {
+        } else {
             $stt['status'] = 'fail';
         }
 
         return json_encode($stt);
     }
-    
 }

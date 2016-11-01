@@ -14,10 +14,4 @@ class AuthController extends Controller
     {
         $this->middleware('auth');
     }
-
-    public function login()
-    {
-        return view('login');
-    }
-
 }
