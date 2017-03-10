@@ -41,14 +41,14 @@ myApp.controller('content_users', function ($scope, $apply, $timeout, $sce) {
     };
     $scope.actionDelete = function (id) {
         var _token = $('input[name="_token"]').val();
-        var url = SITE_ROOT + 'admin/deleteUsers/';
+        var url = SITE_ROOT + 'admin/users/deleteUsers/';
         if (typeof id === 'undefined') {
             var arrid = [];
             $('#datatable-buttons').find('tbody input[type=checkbox]:checked:enabled').each(function () {
                 arrid.push($(this).attr('data-id'));
             });
             $.each(arrid, function (key, value) {
-                url = SITE_ROOT + 'admin/deleteUsers/' + value;
+                url = SITE_ROOT + 'admin/users/deleteUsers/' + value;
                 deleteUsers(url, _token);
             });
         }else {
@@ -64,10 +64,8 @@ myApp.controller('content_users', function ($scope, $apply, $timeout, $sce) {
             } else {
                 alert("Thao tác không thành công!");
             }
-
         });
     }
-    ;
 });
 function btnChangeStatus(id) {
     var data = $('input[name="_token"]').val();
